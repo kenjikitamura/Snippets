@@ -2,16 +2,20 @@ package jp.rainbowdevil.snippets.model;
 
 import java.util.List;
 
+import org.simpleframework.xml.Root;
+
 /**
  * ライブラリまたはグループのinterface
  * */
-public interface GroupItem {
+public interface IGroupItem {
 	
 	/** ツリーに表示するタイトルを取得する */
 	public String getTitle();
 	
+	public void setTitle(String title);
+	
 	/** 子のリストを取得する。 */
-	public List<GroupItem> getChildren();
+	public List<IGroupItem> getChildren();
 	
 	/**
 	 * 子がいるかを取得する。
@@ -26,17 +30,32 @@ public interface GroupItem {
 	public int getChildrenSize();
 	
 	/**
+	 * このグループが含むスニペットのサイズを返す
+	 * @return
+	 */
+	public int getSnippetsSize();
+	
+	/**
 	 * Itemの親を取得する。
 	 * 存在しない場合はnullを返す。
 	 * @return
 	 */
-	public GroupItem getParent();
+	public IGroupItem getParent();
+	
+	public void setParent(IGroupItem parent);
 	
 	/**
 	 * 子を追加する。
 	 * @param item
 	 */
-	public void addChild(GroupItem item);
+	public void addChild(IGroupItem item);
+	
+	/**
+	 * 子を削除する。
+	 * @return 削除に成功したかどうか
+	 * @param item
+	 */
+	public boolean removeChild(IGroupItem item);
 	
 	/**
 	 * グループに含まれるスニペットのリストを取得する。

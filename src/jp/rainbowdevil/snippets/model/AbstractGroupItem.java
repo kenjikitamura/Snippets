@@ -3,22 +3,43 @@ package jp.rainbowdevil.snippets.model;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class AbstractGroupItem implements GroupItem{
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
+/**
+ * グループアイテムの基底クラス
+ * @author kitamura
+ *
+ */
+@Root
+abstract public class AbstractGroupItem implements IGroupItem{
+	@Element
 	protected String title;
-	protected GroupItem parent;
-	protected List<GroupItem> children;
+	
+	
+	protected IGroupItem parent;
+	
+	@ElementList
+	protected List<IGroupItem> children;
+	
+	@ElementList
 	protected List<ISnippet> snippets;
 	
 	public AbstractGroupItem(){
 		snippets = new ArrayList<ISnippet>();
-		children = new ArrayList<GroupItem>();
+		children = new ArrayList<IGroupItem>();
+	}
+	
+	public String toString(){
+		return "GroupItem{"+getTitle()+"}";
 	}
 
-	public List<GroupItem> getChildren() {
+	public List<IGroupItem> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<GroupItem> children) {
+	public void setChildren(List<IGroupItem> children) {
 		this.children = children;
 	}
 
@@ -39,21 +60,41 @@ abstract public class AbstractGroupItem implements GroupItem{
 	}
 	
 	@Override
+	public int getSnippetsSize() {
+		int size = snippets.size();
+		if (children == null){
+			return size;
+		}
+		
+		for(IGroupItem item : children){
+			size += item.getSnippetsSize();
+		}
+
+		return size;
+	}
+	
+	@Override
 	public boolean hasChildren() {
 		return getChildrenSize() != 0;
 	}
 	
 	@Override
-	public GroupItem getParent() {
+	@Element(required=false)
+	public IGroupItem getParent() {
 		return parent;
 	}
 	
 	@Override
-	public void addChild(GroupItem item) {
+	public void addChild(IGroupItem item) {
 		if (children == null){
-			children = new ArrayList<GroupItem>();
+			children = new ArrayList<IGroupItem>();
 		}
 		children.add(item);		
+	}
+	
+	@Override
+	public boolean removeChild(IGroupItem item) {
+		return children.remove(item);		
 	}
 
 	public List<ISnippet> getSnippets() {
@@ -67,6 +108,11 @@ abstract public class AbstractGroupItem implements GroupItem{
 	@Override
 	public void addSnippet(ISnippet snippet) {
 		snippets.add(snippet);
+	}
+
+	@Element(required=false)
+	public void setParent(IGroupItem parent) {
+		this.parent = parent;
 	}
 	 
 }
