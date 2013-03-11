@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Proxy;
@@ -13,6 +14,7 @@ import java.net.SocketAddress;
 import java.net.Proxy.Type;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +27,9 @@ public class ServerConnection {
 	
 	enum Method{
 		GET,
-		POST
+		POST,
+		PUT,
+		DELETE
 	}
 	
 	private Method method;
@@ -54,21 +58,26 @@ public class ServerConnection {
 		
 		log.debug("サーバ接続URL = "+strUrl);
 		URL url = new URL(strUrl);
-		URLConnection connection = null;
+		HttpURLConnection connection = null;
 		if (proxyServer != null) {
 			Proxy proxy = new Proxy(Type.HTTP, new InetSocketAddress(
 					proxyServer, proxyPort));
-			connection = url.openConnection(proxy);
+			connection = (HttpURLConnection)url.openConnection(proxy);
 		} else {
-			connection = url.openConnection();
+			connection = (HttpURLConnection)url.openConnection();
 		}
-
+		
 		connection.setRequestProperty("User-Agent",
 				"Rainbowdevil Snippet client library");
 
-		if (method == Method.POST) {
+		if (method == Method.POST || method == Method.PUT) {
+			
+			if (method == Method.PUT){
+				connection.setRequestMethod("PUT");
+			}
 			// POST
-			connection.setDoOutput(true);
+			connection.setDoOutput(true);		
+			connection.setRequestProperty("Content-Type", "multipart/form-data;");
 
 			StringBuilder sb = new StringBuilder();
 			OutputStream os = connection.getOutputStream();
@@ -78,14 +87,18 @@ public class ServerConnection {
 					if (sb.length() != 0) {
 						sb.append("&");
 					}
-					sb.append(key + "=" + params.get(key));
+					String value = params.get(key);
+					if (value == null){
+						continue;
+					}
+					sb.append(URLEncoder.encode(key,"UTF-8") + "=" + URLEncoder.encode(value,"UTF-8"));
 				}
 			}
-			PrintStream ps = new PrintStream(os);
+			PrintStream ps = new PrintStream(os,true,"UTF-8");
 			ps.print(sb.toString());
 			ps.close();
+			log.debug(method+"パラメータ書き込み "+sb.toString());
 		}
-		
 		
 		InputStream is = connection.getInputStream();
 		return is;

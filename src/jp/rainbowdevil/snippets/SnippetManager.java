@@ -18,7 +18,7 @@ import jp.rainbowdevil.snippets.ui.SnippetsException;
 public class SnippetManager {
 	protected static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(SnippetManager.class);
 	
-	private List<IGroupItem> libraryList;
+	//private List<IGroupItem> libraryList;
 	 
 	private RootGroupItem rootItem;
 	private ISnippetWindow snippetsWindow;
@@ -32,7 +32,7 @@ public class SnippetManager {
 	private IGroupItem currentGroupItem;
 	
 	public SnippetManager(){
-		snippetsLibraries = TestData.getTestData();		
+		//snippetsLibraries = TestData.getTestData();		
 		rootItem = new RootGroupItem();
 	}
 	
@@ -45,6 +45,7 @@ public class SnippetManager {
 			throw new SnippetsException("スニペットライブラリが選択されていません。");
 		}
 		ISnippet snippet = SnippetsBuilder.createNewSnippet();
+		snippet.setSnippetsLibrary(currentSnippetsLibrary);
 		currentSnippetsLibrary.addSnippet(snippet);
 		snippetsWindow.selectCurrentSnippet(snippet);
 		snippetsWindow.refresh();
@@ -66,12 +67,22 @@ public class SnippetManager {
 	public void loadSnippetLibraryFromLocalDatabase() throws IOException{
 		SnippetStore snippetStore = new SnippetStore();
 		try{
-			snippetsLibraries = snippetStore.loadLocalDatabase();
-			List<IGroupItem> list = new ArrayList<IGroupItem>(snippetsLibraries);
-			rootItem.setChildren(list); 
+			snippetsLibraries = snippetStore.loadLocalDatabase();			
 		}catch(FileNotFoundException e){
 			log.error("ローカルスニペットライブラリデータベースファイルが見つからなかった。",e);
+			/*
+			List<IGroupItem> list = new ArrayList<IGroupItem>();
+			IGroupItem item = new SnippetsLibrary();
+			item.setTitle("マイライブラリ");
+			list.add(item);
+			rootItem.setChildren(list);
+			*/
 		}
+		if (snippetsLibraries == null){
+			snippetsLibraries = new ArrayList<SnippetsLibrary>();
+		}
+		//List<IGroupItem> list = new ArrayList<IGroupItem>(snippetsLibraries);
+		rootItem.setSnippetsLibraries(snippetsLibraries);
 	}
 	
 	/**
@@ -119,6 +130,7 @@ public class SnippetManager {
 		return null;
 	}
 	
+	/*
 	public List<IGroupItem> getLibraryList() {
 		return libraryList;
 	}
@@ -126,6 +138,7 @@ public class SnippetManager {
 	public void setLibraryList(List<IGroupItem> libraryList) {
 		this.libraryList = libraryList;
 	}
+	*/
 
 	public RootGroupItem getRootItem() {
 		return rootItem;
@@ -145,6 +158,22 @@ public class SnippetManager {
 
 	public List<SnippetsLibrary> getSnippetsLibraries() {
 		return snippetsLibraries;
+	}
+	
+	/**
+	 * スニペットライブラリIDから、スニペットライブラリを取得する。
+	 * 
+	 * 存在しない場合はnullを返す。
+	 * @param libraryId
+	 * @return
+	 */
+	public SnippetsLibrary getSnippetsLibrary(long libraryId){
+		for(SnippetsLibrary library:snippetsLibraries){
+			if (library.getId() == libraryId){
+				return library;
+			}
+		}
+		return null;
 	}
 
 	public void setSnippetsLibraries(List<SnippetsLibrary> snippetsLibraries) {

@@ -46,8 +46,29 @@ public class Snippet implements ISnippet{
 	/** スニペット更新日時 */
 	private Date updateDate;
 	
+	@Element(required=false)
 	/** スニペット編集可否 */
-	private EditableType editableType;
+	private EditableType editableType = null;
+	
+	@Element(required=true)
+	/** 編集フラグ この変数の値により、ローカルのデータが更新されているかを確認する */
+	private boolean isDirty = false;
+	
+	@Element(required=true)
+	private SnippetsLibrary snippetsLibrary;
+	
+	@Element(required=true)
+	private long id = -1;
+		
+	@Element(required=true)
+	/** 更新カウンタ この変数の値によりサーバ上のデータが更新されているかを確認する。 */
+	private long updateCount = -1;
+	
+	@Element(required=true)
+	private boolean isDeleted = false;
+	
+	//@Element(required=true)
+	//private long libraryId = -1;
 
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
@@ -76,6 +97,9 @@ public class Snippet implements ISnippet{
 	}
 
 	public String getNotes() {
+		if (notes == null){
+			return "";
+		}
 		return notes;
 	}
 
@@ -92,6 +116,9 @@ public class Snippet implements ISnippet{
 	}
 
 	public String getRelatedUrl() {
+		if (url == null){
+			return "";
+		}
 		return url;
 	}
 
@@ -100,6 +127,9 @@ public class Snippet implements ISnippet{
 	}
 
 	public String getAuthor() {
+		if (author == null){
+			return "";
+		}
 		return author;
 	}
 
@@ -108,6 +138,9 @@ public class Snippet implements ISnippet{
 	}
 
 	public String getLicense() {
+		if (license == null){
+			return "";
+		}
 		return license;
 	}
 
@@ -140,5 +173,54 @@ public class Snippet implements ISnippet{
 
 	public void setEditableType(EditableType editableType) {
 		this.editableType = editableType;
+	}
+
+
+	public boolean isDirty() {
+		return isDirty;
+	}
+
+
+	public void setDirty(boolean isDirty) {
+		this.isDirty = isDirty;
+	}
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@Override
+	public long getUpdateCount() {		
+		return updateCount;
+	}
+
+	@Override
+	public void setUpdateCount(long updateCount) {
+		this.updateCount = updateCount;
+	}
+
+	public SnippetsLibrary getSnippetsLibrary() {
+		return snippetsLibrary;
+	}
+
+
+	public void setSnippetsLibrary(SnippetsLibrary snippetsLibrary) {
+		this.snippetsLibrary = snippetsLibrary;
+	}
+
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }

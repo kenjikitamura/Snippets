@@ -3,6 +3,7 @@ package jp.rainbowdevil.snippets.ui;
 import jp.rainbowdevil.snippets.SnippetManager;
 import jp.rainbowdevil.snippets.model.IGroupItem;
 import jp.rainbowdevil.snippets.model.ISnippet;
+import jp.rainbowdevil.snippets.sync.SynchronizeManager;
 
 /**
  * アプリケーションウインドウのinterface
@@ -35,6 +36,8 @@ public interface ISnippetWindow {
 	
 	/** SnippetManagerを取得する。 */
 	public SnippetManager getSnippetManager();
+	
+	public SynchronizeManager getSynchronizeManager();
 	
 	/** アプリケーションを終了する。 */
 	public void exit();

@@ -22,10 +22,10 @@ public class TestData {
 		RootGroupItem rootItem = new RootGroupItem();
 		
 		
-		List<IGroupItem> libraryList = new ArrayList<IGroupItem>();
-		libraryList.add(testLibrary);
+		//List<IGroupItem> libraryList = new ArrayList<IGroupItem>();
+		//libraryList.add(testLibrary);
 		
-		rootItem.setChildren(libraryList);
+		rootItem.getSnippetsLibraries().add(testLibrary);
 		
 		Group group = new Group();
 		group.setTitle("hoge1");		
@@ -45,12 +45,14 @@ public class TestData {
 		snippet = new Snippet();
 		snippet.setTitle("タイトル1");
 		snippet.setBody("ふがふが\nほげ");
+		snippet.setSnippetsLibrary(testLibrary);
 		group1.addSnippet(snippet);
 		testLibrary.addSnippet(snippet);
 		
 		snippet = new Snippet();
 		snippet.setTitle("タイトル2");
 		snippet.setBody("おおおお\nうう");
+		snippet.setSnippetsLibrary(testLibrary);
 		group1.addSnippet(snippet);
 		testLibrary.addSnippet(snippet);
 		

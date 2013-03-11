@@ -3,6 +3,7 @@ package jp.rainbowdevil.snippets.ui.windows;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,8 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.TreeViewerEditor;
 import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -107,6 +110,9 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	/** 現在開いているグループ */
 	private IGroupItem currentGroupItem;
 	
+	/** 同期管理クラス */
+	private SynchronizeManager synchronizeManager;
+	
 	/**
 	 * コンストラクタ
 	 */
@@ -114,6 +120,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		super(null);
 		snippetManager = new SnippetManager();
 		snippetManager.setSnippetsWindow(this);
+		synchronizeManager = new SynchronizeManager();
 		try {
 			log.debug("起動時にスニペットライブラリ読み込み開始");
 			snippetManager.loadSnippetLibraryFromLocalDatabase();
@@ -245,6 +252,14 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		col2.setWidth(100);
 		
 		snippetsTableViewer.getTable().setHeaderVisible(true);
+
+		snippetsTableViewer.addFilter(new ViewerFilter() {					
+			@Override
+			public boolean select(Viewer viewer, Object parent, Object object) {
+				ISnippet snippet = (ISnippet)object;				
+				return !snippet.isDeleted();
+			}
+		});
 		int operations = DND.DROP_COPY| DND.DROP_MOVE;
 		Transfer[] transferTypes = new Transfer[]{TextTransfer.getInstance()};
 		snippetsTableViewer.addDragSupport(operations, transferTypes, new SnippetDragSourceListener(snippetsTableViewer));
@@ -359,19 +374,6 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		
 		rightSashForm.setWeights(new int[]{30,70});
 		topSashForm.setWeights(new int[]{20, 80});
-		
-		// test
-		SynchronizeManager synchronizeManager = new SynchronizeManager();
-		try {
-			synchronizeManager.login("test8@test.com", "kitamura");
-			List<SnippetsLibrary> list = synchronizeManager.getUserLibraries();
-			log.debug("ライブラリ一覧 size="+list.size());
-			for(SnippetsLibrary library:list){
-				log.debug("ライブラリ "+library.getTitle());
-			}
-		} catch (IOException e) {
-			log.debug("通信エラー",e);
-		}
 
 		return parent;
 	}
@@ -382,6 +384,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	 */
 	public void selectCurrentGroupItem(IGroupItem groupItem) {
 		StructuredSelection selection = new StructuredSelection(groupItem);
+		currentGroupItem = groupItem;
 		libraryTreeViewer.setSelection(selection);
 	}
 	
@@ -393,6 +396,8 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			currentSnippet.setAuthor(snippetAuthorText.getText());
 			currentSnippet.setRelatedUrl(snippetRelatedUrlText.getText());
 			currentSnippet.setNotes(snippetNoteText.getText());
+			currentSnippet.setDirty(true);
+			
 			snippetsTableViewer.refresh();
 		}
 	}
@@ -495,6 +500,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	 * 現在選択中のスニペットを設定する。
 	 */
 	public void selectCurrentSnippet(ISnippet snippet) {
+		currentSnippet = snippet;
 		IGroupItem item = snippetManager.getGroupItem(snippet);
 		log.debug("スニペットを選択状態に groupItem="+item);
 		if (item != null){
@@ -520,11 +526,38 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		return groupItem;
 	}
 	
+	/**
+	 * 現在選択中のスニペット一覧を取得する。
+	 * 何も選択していなければ、サイズが0のリストを返す。
+	 * @return
+	 */
+	public List<ISnippet> getCurrentSelectedSnipptes(){
+		List<ISnippet> selectedList = new ArrayList<ISnippet>();
+		StructuredSelection selection = (StructuredSelection)snippetsTableViewer.getSelection();
+		
+		if (!selection.isEmpty()){
+			for(Object obj:selection.toList()){
+				if (obj instanceof ISnippet){
+					selectedList.add((ISnippet)obj);
+				}
+			}
+		}
+		return selectedList;
+	}
+	
 	@Override
+	/**
+	 * 表示を更新する
+	 */
 	public void refresh() {
 		libraryTreeViewer.refresh();
 		snippetsTableViewer.refresh();
-		
+		if (currentSnippet != null){
+			showSnippet(currentSnippet);
+		}
+		//log.debug("refresh groupItem="+currentGroupItem+" snippet="+currentSnippet);
+		//selectCurrentGroupItem(currentGroupItem);
+		//selectCurrentSnippet(currentSnippet);
 	}
 	
 	/**
@@ -539,5 +572,9 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		mainWindow.setBlockOnOpen(true);
 		mainWindow.open();
 		Display.getCurrent().dispose();
+	}
+	
+	public SynchronizeManager getSynchronizeManager(){
+		return synchronizeManager;
 	}
 }

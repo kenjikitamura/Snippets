@@ -7,7 +7,11 @@ import java.util.Date;
  * @author kkitamura
  *
  */
-public interface ISnippet {
+public interface ISnippet { 
+	
+	public long getId();
+	public void setId(long id);
+	
 	
 	/** スニペットのタイトルを取得する。 */
 	public String getTitle();
@@ -20,6 +24,12 @@ public interface ISnippet {
 	
 	/** スニペットの本文を設定する。 */
 	public void setBody(String text);
+	
+	/** 変更済みフラグを設定する。 */
+	public void setDirty(boolean dirty);
+	
+	/** 変更済みフラグを取得する。 */
+	public boolean isDirty();
 	
 	public Date getCreateDate();
 	public void setCreateDate(Date createDate);
@@ -38,6 +48,15 @@ public interface ISnippet {
 	
 	public EditableType getEditableType();
 	public void setEditableType(EditableType editableType);
+	
+	public long getUpdateCount();
+	public void setUpdateCount(long updateCount);
+	
+	public boolean isDeleted();
+	public void setDeleted(boolean isDeleted);
+	
+	public SnippetsLibrary getSnippetsLibrary();
+	public void setSnippetsLibrary(SnippetsLibrary snippetsLibrary);
 	
 	public enum EditableType{
 		EDITABLE,			// 編集可能
