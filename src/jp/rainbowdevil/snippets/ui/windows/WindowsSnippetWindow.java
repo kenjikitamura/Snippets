@@ -19,6 +19,9 @@ import jp.rainbowdevil.snippets.sync.SynchronizeManager;
 import jp.rainbowdevil.snippets.ui.ISnippetWindow;
 import jp.rainbowdevil.snippets.ui.windows.action.CreateSnippetAction;
 import jp.rainbowdevil.snippets.ui.windows.action.ExitAction;
+import jp.rainbowdevil.snippets.ui.windows.syntax.PmpeLineStyleListener;
+import jp.rainbowdevil.snippets.ui.windows.syntax.SyntaxData;
+import jp.rainbowdevil.snippets.ui.windows.syntax.SyntaxManager;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jface.action.MenuManager;
@@ -374,6 +377,8 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		
 		rightSashForm.setWeights(new int[]{30,70});
 		topSashForm.setWeights(new int[]{20, 80});
+		
+		updateSyntaxHighlight();
 
 		return parent;
 	}
@@ -572,6 +577,23 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		mainWindow.setBlockOnOpen(true);
 		mainWindow.open();
 		Display.getCurrent().dispose();
+	}
+	
+	
+	private PmpeLineStyleListener lineStyleListener ;
+	public void updateSyntaxHighlight(){
+		SyntaxManager syntaxManager = new SyntaxManager();
+		SyntaxData syntaxData = syntaxManager.getSyntaxData("java");
+
+	    // Reset the line style listener
+	    if (lineStyleListener != null) {
+	      styledText.removeLineStyleListener(lineStyleListener);
+	    }
+	    lineStyleListener = new PmpeLineStyleListener(syntaxData);
+	    styledText.addLineStyleListener(lineStyleListener);
+
+	    // Redraw the contents to reflect the new syntax data
+	    styledText.redraw();
 	}
 	
 	public SynchronizeManager getSynchronizeManager(){
