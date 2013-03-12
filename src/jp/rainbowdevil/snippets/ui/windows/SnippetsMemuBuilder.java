@@ -3,6 +3,7 @@ package jp.rainbowdevil.snippets.ui.windows;
 import jp.rainbowdevil.snippets.ui.ISnippetWindow;
 import jp.rainbowdevil.snippets.ui.windows.action.DeleteSnippetsAction;
 import jp.rainbowdevil.snippets.ui.windows.action.ExitAction;
+import jp.rainbowdevil.snippets.ui.windows.action.OpenPreferenceDialogAction;
 import jp.rainbowdevil.snippets.ui.windows.action.SaveSnippetLibraryToLocalDatabaseAction;
 import jp.rainbowdevil.snippets.ui.windows.action.SearchDialogOpenAction;
 import jp.rainbowdevil.snippets.ui.windows.action.SnippetWindowAction;
@@ -21,6 +22,7 @@ public class SnippetsMemuBuilder {
 		fileMenu.add(new ExitAction(snippetsWindow));
 		fileMenu.add(new SaveSnippetLibraryToLocalDatabaseAction(snippetsWindow,"保存"));
 		fileMenu.add(new DeleteSnippetsAction(snippetsWindow, "スニペット削除"));
+		fileMenu.add(new OpenPreferenceDialogAction(snippetsWindow, "設定"));
 		
 		// テスト用検索ウインドウ表示
 		fileMenu.add(new SearchDialogOpenAction(snippetsWindow, "テスト検索窓表示"));

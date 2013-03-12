@@ -66,6 +66,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
+import org.markdown4j.Markdown4jProcessor;
 
 /**
  * Snippets メインウインドウ
@@ -248,7 +249,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetsTableViewer.setLabelProvider(new SnippetsTableLabelProvider());
 		TableColumn col1 = new TableColumn(snippetsTableViewer.getTable(), SWT.LEFT);
 		col1.setText("タイトル");
-		col1.setWidth(100);
+		col1.setWidth(400);
 		
 		TableColumn col2 = new TableColumn(snippetsTableViewer.getTable(), SWT.LEFT);
 		col2.setText("更新日");
@@ -305,7 +306,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		};
 		
 		// 情報表示ボタン
-		Composite inspectorComposite = new Composite(snippetHeaderComposite, SWT.BORDER);
+		Composite inspectorComposite = new Composite(snippetHeaderComposite, SWT.NONE);
 		GridData inspectorCompositeLayoutData = new GridData(GridData.FILL_HORIZONTAL);
 		inspectorCompositeLayoutData.horizontalSpan = 2;
 		inspectorComposite.setLayoutData(inspectorCompositeLayoutData);
@@ -320,7 +321,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		
 		// スニペットタイトル
 		snippetTitleText = new Text(inspectorComposite, SWT.BORDER);
-		snippetTitleText.setText("title");
+		snippetTitleText.setText("");
 		snippetTitleText.setEnabled(false);
 		GridData snippetTitleTextLayoutData = new GridData(GridData.FILL_HORIZONTAL);
 		snippetTitleTextLayoutData.horizontalSpan = 1;
@@ -340,7 +341,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		hideInspectorButton.setText("非表示");
 		
 		
-		styledText = new StyledText(snippetEditorComposite, SWT.NONE);
+		styledText = new StyledText(snippetEditorComposite, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		styledText.setEnabled(false);
 		styledText.addModifyListener(snippetModifyListener);
 		GridData styledTextLayoutData = new GridData(GridData.FILL_BOTH);
@@ -379,6 +380,15 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		topSashForm.setWeights(new int[]{20, 80});
 		
 		updateSyntaxHighlight();
+		
+		Markdown4jProcessor markdown4jProcessor = new Markdown4jProcessor();
+		try {
+			String html = markdown4jProcessor.process("This is a **bold** text~~~~~~~\nif (a > 3) {\n  moveShip(5 * gravity, DOWN);\n}\n~~~~~~~");
+			log.debug("html="+html);
+		} catch (IOException e) {
+			log.debug("処理に失敗",e);
+		}
+		
 
 		return parent;
 	}
@@ -569,7 +579,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	 * SampleWindowのmainメソッド
 	 * @param args 引数(ここでは無視する)
 	 */
-	public static void main(String[] args) {	
+	public static void main(String[] args) {			
 		WindowsSnippetWindow mainWindow = new WindowsSnippetWindow();
 		mainWindow.addMenuBar();
 		mainWindow.addToolBar(SWT.FLAT);

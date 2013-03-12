@@ -2,10 +2,10 @@ package jp.rainbowdevil.snippets.preferences.windows;
 
 import java.io.IOException;
 
+import jp.rainbowdevil.snippets.preferences.ISnippetPreference;
+
 import org.apache.log4j.Logger;
 import org.eclipse.jface.preference.PreferenceStore;
-
-import jp.rainbowdevil.snippets.preferences.ISnippetPreference;
 
 /**
  * Windows用設定保存クラス
@@ -22,8 +22,22 @@ public class WindowsSnippetPreference implements ISnippetPreference{
 	
 	public WindowsSnippetPreference() {
 		preferenceStore = new PreferenceStore(FILENAME);
+		initDefaultValue();
 	}
-
+	
+	private void initDefaultValue(){
+		// デモ用初期値
+		if (!preferenceStore.contains(ISnippetPreference.ACCOUNT_EMAIL)){
+			preferenceStore.setValue(ISnippetPreference.ACCOUNT_EMAIL, "demo@example.com");
+			preferenceStore.setValue(ISnippetPreference.ACCOUNT_PASSWORD, "demo");
+		}
+		
+		// 初期値
+		if (!preferenceStore.contains(ISnippetPreference.CONNECTION_USE_PROXY)){
+			preferenceStore.setValue(ISnippetPreference.CONNECTION_PROXY_SERVER, "proxy.mei.co.jp");
+			preferenceStore.setValue(ISnippetPreference.CONNECTION_PROXY_PORT, 8080);
+		}
+	}
 
 	@Override
 	/**
@@ -79,5 +93,18 @@ public class WindowsSnippetPreference implements ISnippetPreference{
 	public void setValue(String key, int value) {
 		preferenceStore.putValue(key, String.valueOf(value));		
 	}
+	
+	@Override
+	public boolean getBoolean(String key) {
+ 		return preferenceStore.getBoolean(key);
+	}
 
+	/**
+	 * PreferenceStoreを取得する。
+	 * PreferenceDialog用
+	 * @return
+	 */
+	public PreferenceStore getPreferenceStore(){
+		return preferenceStore;
+	}
 }

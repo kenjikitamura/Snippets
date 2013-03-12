@@ -7,17 +7,15 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import jp.rainbowdevil.snippets.SnippetManager;
 import jp.rainbowdevil.snippets.model.ISnippet;
 import jp.rainbowdevil.snippets.model.Snippet;
 import jp.rainbowdevil.snippets.model.SnippetsLibrary;
+import jp.rainbowdevil.snippets.preferences.ISnippetPreference;
+import jp.rainbowdevil.snippets.preferences.PreferencesBuilder;
 import jp.rainbowdevil.snippets.sync.ServerConnection.Method;
-
-import org.eclipse.swt.internal.Library;
-
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONException;
 
@@ -382,7 +380,15 @@ public class SynchronizeManager {
 	}
 	
 	private InputStream open(ServerConnection connection, String strUrl) throws IOException{
-		return connection.getInputStream(strUrl, proxyServer, proxyPort);
+		ISnippetPreference preference = PreferencesBuilder.getSnippetPreference();
+		boolean useProxy = preference.getBoolean(ISnippetPreference.CONNECTION_USE_PROXY);
+		if (useProxy){
+			String proxyServerAddress = preference.getString(ISnippetPreference.CONNECTION_PROXY_SERVER, null);
+			int proxyServerPort = preference.getInt(ISnippetPreference.CONNECTION_PROXY_PORT, 0);
+			return connection.getInputStream(strUrl, proxyServer, proxyPort);
+		}else{		
+			return connection.getInputStream(strUrl);
+		}
 	}
 	
 	private String toString(InputStream inputStream) throws IOException{

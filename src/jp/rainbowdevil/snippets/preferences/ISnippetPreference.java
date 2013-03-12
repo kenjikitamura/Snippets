@@ -18,14 +18,28 @@ public interface ISnippetPreference {
 	public static final String LAST_WINDOW_X = "LAST_WINDOW_X";
 	
 	/** 前回終了時の画面位置(Y) */
-	public static final String LAST_WINDOW_Y = "LAST_WINDOW_Y"; 
+	public static final String LAST_WINDOW_Y = "LAST_WINDOW_Y";
 	
+	/** アカウント情報 パスワード */
+	public static final String ACCOUNT_PASSWORD = "account.password";
+	
+	/** アカウント情報 メールアドレス */
+	public static final String ACCOUNT_EMAIL = "account.email";
+	
+	/** アカウント情報 認証トークン */
+	public static final String AUTHENTICATION_TOKEN = "account.authentication_token";
+	
+	public static final String CONNECTION_USE_PROXY = "connection.use_proxy";
+	public static final String CONNECTION_PROXY_SERVER = "connection.proxy.server.address";
+	public static final String CONNECTION_PROXY_PORT = "connection.proxy.server.port";
+
 	public void save() throws IOException;
 	public boolean saveQuietly();
 	
 	public void load() throws IOException;
 	public String getString(String key, String defaultValue);
 	public int getInt(String key, int defaultValue);
+	public boolean getBoolean(String key);
 	public void setValue(String key, String value);
 	public void setValue(String key, int value);
 }

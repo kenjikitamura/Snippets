@@ -1,0 +1,12 @@
+package jp.rainbowdevil.snippets.model;
+
+import java.util.Date;
+
+/**
+ * ÉmÅ[Ég
+ * @author kkitamura
+ *
+ */
+public class Note extends AbstractSnippet {
+
+}
