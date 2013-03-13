@@ -5,8 +5,10 @@ package jp.rainbowdevil.snippets.ui.windows;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import jp.rainbowdevil.snippets.SnippetManager;
 import jp.rainbowdevil.snippets.model.IGroupItem;
@@ -14,11 +16,10 @@ import jp.rainbowdevil.snippets.model.ISnippet;
 import jp.rainbowdevil.snippets.model.SnippetsLibrary;
 import jp.rainbowdevil.snippets.preferences.ISnippetPreference;
 import jp.rainbowdevil.snippets.preferences.PreferencesBuilder;
-import jp.rainbowdevil.snippets.sync.ServerConnection;
+import jp.rainbowdevil.snippets.sync.SynchronizeListener;
 import jp.rainbowdevil.snippets.sync.SynchronizeManager;
 import jp.rainbowdevil.snippets.ui.ISnippetWindow;
 import jp.rainbowdevil.snippets.ui.windows.action.CreateSnippetAction;
-import jp.rainbowdevil.snippets.ui.windows.action.ExitAction;
 import jp.rainbowdevil.snippets.ui.windows.syntax.PmpeLineStyleListener;
 import jp.rainbowdevil.snippets.ui.windows.syntax.SyntaxData;
 import jp.rainbowdevil.snippets.ui.windows.syntax.SyntaxManager;
@@ -116,6 +117,15 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	
 	/** 同期管理クラス */
 	private SynchronizeManager synchronizeManager;
+	
+	/** 自動同期用ScheduledExecutorService */
+	private ScheduledExecutorService executorService = Executors.newScheduledThreadPool(5);
+	
+	/** 最後に編集してから何秒で自動同期を行うか */
+	private long AUTO_SYNC_TIMER = 30 * 1000;
+	
+	/** 最後に編集したタイムスタンプ */
+	private long lastModifyTimestamp;
 	
 	/**
 	 * コンストラクタ
@@ -389,9 +399,98 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			log.debug("処理に失敗",e);
 		}
 		
+		initAutoSyncTimer();
 
 		return parent;
 	}
+	
+	/**
+	 * 自動同期タイマーを初期化
+	 * 1分ごとにチェックする。
+	 */
+	private void initAutoSyncTimer(){
+		executorService.scheduleWithFixedDelay(new Runnable() {			
+			@Override
+			public void run() {
+				try{
+					checkAutoSync();
+				}catch(Exception e){
+					log.error("自動同期中にエラー発生",e);
+				}
+			}
+		}, 1, 1, TimeUnit.MINUTES);
+	}
+	
+	/**
+	 * 自動同期チェック
+	 */
+	private void checkAutoSync(){
+		long diff = System.currentTimeMillis() - lastModifyTimestamp;
+		log.debug("自動同期チェック diff="+diff + " lastModifyTimestamp=" + lastModifyTimestamp);
+		if (diff > AUTO_SYNC_TIMER && lastModifyTimestamp != 0){
+			syncSnippets();
+			lastModifyTimestamp = 0;
+		}
+	}
+	
+	/**
+	 * サーバ同期を行う
+	 */
+	private void syncSnippets(){
+		try{
+			ISnippetPreference preference = PreferencesBuilder.getSnippetPreference();
+			String email = preference.getString(ISnippetPreference.ACCOUNT_EMAIL, null);
+			String password = preference.getString(ISnippetPreference.ACCOUNT_PASSWORD, null);
+			if (email != null){
+				getSynchronizeManager().login(email, password);
+			}else{
+				setStatusAsync("自動同期失敗 : アカウント情報を登録してください。");
+				return;
+			}
+		}catch(IOException e){
+			log.error("ログイン失敗",e);
+			if (e.getMessage().contains("Server returned HTTP response code: 401")){
+				setStatusAsync("自動同期失敗 : 認証に失敗しました。"+e.getMessage());
+			}else{
+				setStatusAsync("自動同期失敗 : "+e.getClass().getName()+" : "+e.getMessage());
+			}
+			
+			return;
+		}
+		getSynchronizeManager().synchronize(getSnippetManager(), new SynchronizeListener() {
+			
+			@Override
+			public void updateProgress(int current, int max) {
+				log.debug("同期中("+current+"/"+max+")");
+			}
+			
+			@Override
+			public void error(String message, Throwable e) {
+				log.debug("同期エラー");
+			}
+				
+			@Override
+			public void complete() {
+				log.debug("同期完了");
+				Display.getDefault().asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						refresh();
+					}
+				});
+			}
+		});
+	}
+	
+	private void setStatusAsync(final String text){
+		Display.getDefault().asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				setStatus(text);
+			}
+		});
+	}
+	
 	
 	@Override
 	/**
@@ -411,9 +510,11 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			currentSnippet.setAuthor(snippetAuthorText.getText());
 			currentSnippet.setRelatedUrl(snippetRelatedUrlText.getText());
 			currentSnippet.setNotes(snippetNoteText.getText());
-			currentSnippet.setDirty(true);
-			
+			currentSnippet.setDirty(true);			
 			snippetsTableViewer.refresh();
+			
+			// 最後に更新した時刻を更新
+			lastModifyTimestamp = System.currentTimeMillis();
 		}
 	}
 	
@@ -447,6 +548,10 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetPreference.setValue(ISnippetPreference.LAST_WINDOW_X, getShell().getBounds().x);
 		snippetPreference.setValue(ISnippetPreference.LAST_WINDOW_Y, getShell().getBounds().y);
 		snippetPreference.saveQuietly();
+		
+		// 自動保存を停止
+		List<Runnable> list = executorService.shutdownNow();
+		log.debug("ExecutorService shutdown. 残りRunnable="+list.size());
 		
 		super.handleShellCloseEvent();
 	}
@@ -579,7 +684,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	 * SampleWindowのmainメソッド
 	 * @param args 引数(ここでは無視する)
 	 */
-	public static void main(String[] args) {			
+	public static void main(String[] args) {
 		WindowsSnippetWindow mainWindow = new WindowsSnippetWindow();
 		mainWindow.addMenuBar();
 		mainWindow.addToolBar(SWT.FLAT);
