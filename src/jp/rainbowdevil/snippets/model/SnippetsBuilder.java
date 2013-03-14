@@ -28,10 +28,19 @@ public class SnippetsBuilder {
 		return snippet;
 	}
 	
-	public static IGroupItem createNewGroup(IGroupItem parent){
-		Group group = new Group();
+	/**
+	 * デフォルト名でタグを追加する
+	 * @param parent
+	 * @return
+	 */
+	public static IGroupItem createNewTag(IGroupItem parent){
+		return createNewTag(parent, "Group");
+	}
+	
+	public static IGroupItem createNewTag(IGroupItem parent, String tagName){
+		SnippetsTag group = new SnippetsTag();
 		group.setParent(parent);
-		group.setTitle("Group");
+		group.setTitle(tagName);
 		if (parent != null){
 			parent.addChild(group);
 		}

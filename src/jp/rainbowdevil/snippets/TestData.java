@@ -3,7 +3,7 @@ package jp.rainbowdevil.snippets;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.rainbowdevil.snippets.model.Group;
+import jp.rainbowdevil.snippets.model.SnippetsTag;
 import jp.rainbowdevil.snippets.model.IGroupItem;
 import jp.rainbowdevil.snippets.model.ISnippet;
 import jp.rainbowdevil.snippets.model.RootGroupItem;
@@ -27,17 +27,17 @@ public class TestData {
 		
 		rootItem.getSnippetsLibraries().add(testLibrary);
 		
-		Group group = new Group();
+		SnippetsTag group = new SnippetsTag();
 		group.setTitle("hoge1");		
 		//libraryList.add(group);
 		testLibrary.addGroupItem(group);
 		
-		group = new Group();
+		group = new SnippetsTag();
 		group.setTitle("hoge2");		
 		//libraryList.add(group);
 		testLibrary.addGroupItem(group);
 		
-		Group group1 = new Group();
+		SnippetsTag group1 = new SnippetsTag();
 		group1.setTitle("hoge2-1");		
 		group.addChild(group1);
 		

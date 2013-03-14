@@ -15,7 +15,7 @@ public class CreateGroupAction extends SnippetWindowAction {
 	public void run() {
 		IGroupItem item = snippetWindow.getCurrentSelectedTreeItem();
 		if (item != null){
-			SnippetsBuilder.createNewGroup(item);
+			SnippetsBuilder.createNewTag(item);
 			snippetWindow.refresh();
 		}
 	}

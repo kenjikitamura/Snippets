@@ -25,7 +25,7 @@ public class CreateSnippetLibraryAction extends SnippetWindowAction{
 		log.debug("新しいグループの作成");
 		IGroupItem item = snippetWindow.getCurrentSelectedTreeItem();
 		if (item != null){
-			SnippetsBuilder.createNewGroup(item);
+			SnippetsBuilder.createNewTag(item);
 		}
 		snippetWindow.refresh();
 	}
