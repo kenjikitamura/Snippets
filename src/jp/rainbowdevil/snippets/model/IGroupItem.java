@@ -2,12 +2,13 @@ package jp.rainbowdevil.snippets.model;
 
 import java.util.List;
 
-import org.simpleframework.xml.Root;
-
 /**
  * ライブラリまたはグループのinterface
  * */
 public interface IGroupItem {
+	
+	public long getId();
+	public void setId(long id);
 	
 	/** ツリーに表示するタイトルを取得する */
 	public String getTitle();

@@ -14,6 +14,13 @@ import org.simpleframework.xml.Root;
  */
 @Root
 abstract public class AbstractGroupItem implements IGroupItem{
+	
+	@Element
+	/**
+	 * サーバ上のグループID
+	 */
+	protected long id = -1;
+	
 	@Element
 	protected String title;
 	
@@ -113,6 +120,16 @@ abstract public class AbstractGroupItem implements IGroupItem{
 	@Element(required=false)
 	public void setParent(IGroupItem parent) {
 		this.parent = parent;
+	}
+	
+	@Override
+	public long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(long id) {
+		this.id = id;
 	}
 	 
 }
