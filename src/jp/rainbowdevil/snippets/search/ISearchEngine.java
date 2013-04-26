@@ -1,12 +1,12 @@
 package jp.rainbowdevil.snippets.search;
 
 /**
- * ŒŸõƒGƒ“ƒWƒ“‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX
+ * æ¤œç´¢ã‚¨ãƒ³ã‚¸ãƒ³ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
  * 
- * ŒŸõ‚ğ”ñ“¯Šú‚ÅÀs‚µA‚»‚ÌŒ‹‰Ê‚ğISearchResultListenerŒo—R‚Å’Ê’m‚·‚éB
- * ”ñ“¯Šú‚ÅŒŸõ‚·‚é‚½‚ßAŒŸõ‚ğ’â~‚·‚éê‡‚Ístop‚ğŒÄ‚Ño‚·B
+ * æ¤œç´¢ã‚’éåŒæœŸã§å®Ÿè¡Œã—ã€ãã®çµæœã‚’ISearchResultListenerçµŒç”±ã§é€šçŸ¥ã™ã‚‹ã€‚
+ * éåŒæœŸã§æ¤œç´¢ã™ã‚‹ãŸã‚ã€æ¤œç´¢ã‚’åœæ­¢ã™ã‚‹å ´åˆã¯stopã‚’å‘¼ã³å‡ºã™ã€‚
  * 
- * ƒXƒjƒyƒbƒgŒŸõAJavadocŒŸõAGoogleŒŸõ‚È‚Ç‘½”‚ÌŒŸõƒGƒ“ƒWƒ“‚ğ—\’è
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ¤œç´¢ã€Javadocæ¤œç´¢ã€Googleæ¤œç´¢ãªã©å¤šæ•°ã®æ¤œç´¢ã‚¨ãƒ³ã‚¸ãƒ³ã‚’äºˆå®š
  * @author kkitamura
  *
  */
@@ -21,7 +21,7 @@ public interface ISearchEngine {
 	public void stop();
 	
 	/**
-	 * ŒŸõŒ‹‰Ê‚ğŠJ‚­ˆ—‚ğÀs‚·‚éB
+	 * æ¤œç´¢çµæœã‚’é–‹ãå‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
 	 * @param item
 	 */
 	public void openSearchResultItem(SearchResultItem item);

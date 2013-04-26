@@ -8,7 +8,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 /**
- * グループアイテムの基底クラス
+ * 繧ｰ繝ｫ繝ｼ繝励い繧､繝�繝縺ｮ蝓ｺ蠎輔け繝ｩ繧ｹ
  * @author kitamura
  *
  */
@@ -17,7 +17,7 @@ abstract public class AbstractGroupItem implements IGroupItem{
 	
 	@Element
 	/**
-	 * サーバ上のグループID
+	 * 繧ｵ繝ｼ繝蝉ｸ翫�ｮ繧ｰ繝ｫ繝ｼ繝悠D
 	 */
 	protected long id = -1;
 	

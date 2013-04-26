@@ -14,14 +14,14 @@ import jp.rainbowdevil.snippets.model.PersistenceRoot;
 import jp.rainbowdevil.snippets.model.SnippetsLibrary;
 
 /**
- * ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰i‘±‰»‚ğs‚¤ƒNƒ‰ƒX
+ * ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æ°¸ç¶šåŒ–ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
  * @author kkitamura
  *
  */
 public class SnippetStore {
 	protected static Logger log = Logger.getLogger(SnippetStore.class);
 	
-	/** ƒ[ƒJƒ‹ƒf[ƒ^ƒx[ƒX‚Ìƒtƒ@ƒCƒ‹–¼ */
+	/** ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ãƒ•ã‚¡ã‚¤ãƒ«å */
 	public static final String FILENAME = "library.xml";
 	
 	public boolean saveLocalDatabase(List<SnippetsLibrary> libraries) throws IOException{
@@ -33,12 +33,12 @@ public class SnippetStore {
 		root.setLibraries(libraries);
 		try {
 			serializer.write(root, result);
-			log.debug("‘‚«‚İŠ®—¹");
+			log.debug("æ›¸ãè¾¼ã¿å®Œäº†");
 			return true;
 		} catch (IOException e){
 			throw e;
 		} catch (Exception e) {
-			log.error("ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚Ì•Û‘¶‚É¸”s",e);
+			log.error("ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ä¿å­˜ã«å¤±æ•—",e);
 			return false;
 		}
 	}
@@ -54,7 +54,7 @@ public class SnippetStore {
 		} catch (IOException e){
 			throw e;
 		} catch (Exception e) {
-			log.error("ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚Ì“Ç‚İ‚İ‚É¸”s",e);
+			log.error("ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®èª­ã¿è¾¼ã¿ã«å¤±æ•—",e);
 		}
 		return null;
 	}

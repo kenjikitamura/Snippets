@@ -6,9 +6,9 @@ import jp.rainbowdevil.snippets.ui.ISnippetWindow;
 import jp.rainbowdevil.snippets.ui.windows.WindowsSnippetWindow;
 
 /**
- * ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚Ìì¬ƒAƒNƒVƒ‡ƒ“
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ä½œæˆã‚¢ã‚¯ã‚·ãƒ§ãƒ³
  * 
- * –³–¼‚ÌƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚ğ’Ç‰Á‚·‚éB
+ * ç„¡åã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’è¿½åŠ ã™ã‚‹ã€‚
  * @author kkitamura
  *
  */
@@ -22,7 +22,7 @@ public class CreateSnippetLibraryAction extends SnippetWindowAction{
 	
 	@Override
 	public void run() {
-		log.debug("V‚µ‚¢ƒOƒ‹[ƒv‚Ìì¬");
+		log.debug("æ–°ã—ã„ã‚°ãƒ«ãƒ¼ãƒ—ã®ä½œæˆ");
 		IGroupItem item = snippetWindow.getCurrentSelectedTreeItem();
 		if (item != null){
 			SnippetsBuilder.createNewTag(item);

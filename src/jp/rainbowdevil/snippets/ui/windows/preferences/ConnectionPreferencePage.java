@@ -8,15 +8,15 @@ import org.eclipse.jface.preference.StringFieldEditor;
 
 public class ConnectionPreferencePage extends FieldEditorPreferencePage{
 	public ConnectionPreferencePage(){
-		setTitle("Ú‘±İ’è");
-        setMessage("ƒT[ƒoÚ‘±İ’è");
+		setTitle("æ¥ç¶šè¨­å®š");
+        setMessage("ã‚µãƒ¼ãƒæ¥ç¶šè¨­å®š");
 	}
 	
 	@Override
 	protected void createFieldEditors() {
-		addField(new BooleanFieldEditor(ISnippetPreference.CONNECTION_USE_PROXY, "Proxy‚ğg‚¤", getFieldEditorParent()));
-		addField(new StringFieldEditor(ISnippetPreference.CONNECTION_PROXY_SERVER, "ProxyƒT[ƒo‚ÌƒAƒhƒŒƒX",getFieldEditorParent()));
-		addField(new StringFieldEditor(ISnippetPreference.CONNECTION_PROXY_PORT, "ProxyƒT[ƒo‚Ìƒ|[ƒg",getFieldEditorParent()));
+		addField(new BooleanFieldEditor(ISnippetPreference.CONNECTION_USE_PROXY, "Proxyã‚’ä½¿ã†", getFieldEditorParent()));
+		addField(new StringFieldEditor(ISnippetPreference.CONNECTION_PROXY_SERVER, "Proxyã‚µãƒ¼ãƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹",getFieldEditorParent()));
+		addField(new StringFieldEditor(ISnippetPreference.CONNECTION_PROXY_PORT, "Proxyã‚µãƒ¼ãƒã®ãƒãƒ¼ãƒˆ",getFieldEditorParent()));
 	}
 
 }

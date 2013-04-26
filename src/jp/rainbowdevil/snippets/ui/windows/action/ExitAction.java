@@ -8,7 +8,7 @@ import org.eclipse.jface.action.Action;
 public class ExitAction extends SnippetWindowAction {
 	
 	public ExitAction(WindowsSnippetWindow snippetsWindow) {
-		super(snippetsWindow, "èIóπ");
+		super(snippetsWindow, "ÁµÇ‰∫Ü");
 	}
 	
 	@Override

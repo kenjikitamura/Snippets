@@ -1,7 +1,7 @@
 package jp.rainbowdevil.snippets.ui;
 
 /**
- * スニペット検索ウインドウ
+ * 繧ｹ繝九�壹ャ繝域､懃ｴ｢繧ｦ繧､繝ｳ繝峨え
  * @author kitamura
  *
  */

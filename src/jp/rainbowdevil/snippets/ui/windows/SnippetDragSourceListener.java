@@ -9,10 +9,10 @@ import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
 
 /**
- * ƒXƒjƒyƒbƒg‚ğƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚µ‚ÄƒOƒ‹[ƒvŠÔ‚ğˆÚ“®‚·‚é—p‚ÌDragSourceListener
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã—ã¦ã‚°ãƒ«ãƒ¼ãƒ—é–“ã‚’ç§»å‹•ã™ã‚‹ç”¨ã®DragSourceListener
  * 
- * Œ»İ‚Í‰¼À‘•‚Æ‚µ‚ÄATextTransfer‚ğg—p‚µAƒXƒjƒyƒbƒg‚ÌHashcode‚ğƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚·‚é‚±‚Æ‚ÅˆÚ“®‚·‚éB
- * ³‚µ‚­‚ÍƒXƒjƒyƒbƒg—p‚ÌTransfer‚ğì¬‚·‚é•K—v‚ª‚ ‚éB
+ * ç¾åœ¨ã¯ä»®å®Ÿè£…ã¨ã—ã¦ã€TextTransferã‚’ä½¿ç”¨ã—ã€ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®Hashcodeã‚’ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã™ã‚‹ã“ã¨ã§ç§»å‹•ã™ã‚‹ã€‚
+ * æ­£ã—ãã¯ã‚¹ãƒ‹ãƒšãƒƒãƒˆç”¨ã®Transferã‚’ä½œæˆã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
  * 
  * @author kitamura
  *

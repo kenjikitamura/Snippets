@@ -16,7 +16,7 @@ public class TestData {
 		List<SnippetsLibrary> snippetsLibraries = new ArrayList<SnippetsLibrary>();
 		
 		SnippetsLibrary testLibrary = new SnippetsLibrary();
-		testLibrary.setTitle("ƒeƒXƒgƒ‰ƒCƒuƒ‰ƒŠ");
+		testLibrary.setTitle("ãƒ†ã‚¹ãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒª");
 		snippetsLibraries.add(testLibrary);
 		
 		RootGroupItem rootItem = new RootGroupItem();
@@ -43,15 +43,15 @@ public class TestData {
 		
 		ISnippet snippet;
 		snippet = new Snippet();
-		snippet.setTitle("ƒ^ƒCƒgƒ‹1");
-		snippet.setBody("‚Ó‚ª‚Ó‚ª\n‚Ù‚°");
+		snippet.setTitle("ã‚¿ã‚¤ãƒˆãƒ«1");
+		snippet.setBody("ãµãŒãµãŒ\nã»ã’");
 		snippet.setSnippetsLibrary(testLibrary);
 		group1.addSnippet(snippet);
 		testLibrary.addSnippet(snippet);
 		
 		snippet = new Snippet();
-		snippet.setTitle("ƒ^ƒCƒgƒ‹2");
-		snippet.setBody("‚¨‚¨‚¨‚¨\n‚¤‚¤");
+		snippet.setTitle("ã‚¿ã‚¤ãƒˆãƒ«2");
+		snippet.setBody("ãŠãŠãŠãŠ\nã†ã†");
 		snippet.setSnippetsLibrary(testLibrary);
 		group1.addSnippet(snippet);
 		testLibrary.addSnippet(snippet);

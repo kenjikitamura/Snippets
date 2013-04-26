@@ -56,7 +56,7 @@ public class ServerConnection {
 			}			 
 		}
 		
-		log.debug("サーバ接続URL = "+strUrl);
+		log.debug("繧ｵ繝ｼ繝先磁邯啅RL = "+strUrl);
 		URL url = new URL(strUrl);
 		HttpURLConnection connection = null;
 		if (proxyServer != null) {
@@ -97,7 +97,7 @@ public class ServerConnection {
 			PrintStream ps = new PrintStream(os,true,"UTF-8");
 			ps.print(sb.toString());
 			ps.close();
-			log.debug(method+"パラメータ書き込み "+sb.toString());
+			log.debug(method+"繝代Λ繝｡繝ｼ繧ｿ譖ｸ縺崎ｾｼ縺ｿ "+sb.toString());
 		}
 		
 		InputStream is = connection.getInputStream();

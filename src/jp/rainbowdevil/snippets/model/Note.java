@@ -3,7 +3,7 @@ package jp.rainbowdevil.snippets.model;
 import java.util.Date;
 
 /**
- * ƒm[ƒg
+ * ãƒãƒ¼ãƒˆ
  * @author kkitamura
  *
  */

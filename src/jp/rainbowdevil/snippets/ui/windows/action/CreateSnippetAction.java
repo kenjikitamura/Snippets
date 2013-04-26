@@ -11,7 +11,7 @@ import jp.rainbowdevil.snippets.ui.windows.WindowsImageRegistory;
 import jp.rainbowdevil.snippets.ui.windows.WindowsSnippetWindow;
 
 /**
- * V‚µ‚¢ƒXƒjƒyƒbƒg‚ðì¬‚·‚éAction
+ * æ–°ã—ã„ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ä½œæˆã™ã‚‹Action
  * @author kkitamura
  *
  */
@@ -29,7 +29,7 @@ public class CreateSnippetAction extends SnippetWindowAction {
 		try {
 			snippetsWindow.getSnippetManager().createNewSnippet();
 		} catch (SnippetsException e) {
-			log.debug("V‚µ‚¢ƒXƒjƒyƒbƒg‚Ìì¬‚ÉŽ¸”sB",e);
+			log.debug("æ–°ã—ã„ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®ä½œæˆã«å¤±æ•—ã€‚",e);
 			MessageBox msg = new MessageBox(snippetsWindow.getShell(), SWT.OK);
 			msg.setText(snippetsWindow.getApplicationTitle());
 			msg.setMessage(e.getMessage());

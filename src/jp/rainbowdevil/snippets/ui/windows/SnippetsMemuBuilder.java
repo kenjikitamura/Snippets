@@ -13,21 +13,21 @@ import org.eclipse.jface.action.MenuManager;
 public class SnippetsMemuBuilder {
 	
 	public MenuManager createMenuManager(WindowsSnippetWindow snippetsWindow){
-		// ƒƒjƒ…[ƒo[‚ğì¬‚·‚éB
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’ä½œæˆã™ã‚‹ã€‚
 		MenuManager menuManager = new MenuManager("");
 
-		// ƒtƒ@ƒCƒ‹(F)ƒƒjƒ…[‚ğì¬‚µ‚Äƒƒjƒ…[ƒo[‚É’Ç‰Á‚·‚éB
-		MenuManager fileMenu = new MenuManager("ƒtƒ@ƒCƒ‹(&F)");
+		// ãƒ•ã‚¡ã‚¤ãƒ«(F)ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œæˆã—ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã«è¿½åŠ ã™ã‚‹ã€‚
+		MenuManager fileMenu = new MenuManager("ãƒ•ã‚¡ã‚¤ãƒ«(&F)");
 		fileMenu.add(new ExitAction(snippetsWindow));
-		fileMenu.add(new SaveSnippetLibraryToLocalDatabaseAction(snippetsWindow,"•Û‘¶"));
-		fileMenu.add(new DeleteSnippetsAction(snippetsWindow, "ƒXƒjƒyƒbƒgíœ"));
-		fileMenu.add(new OpenPreferenceDialogAction(snippetsWindow, "İ’è"));
-		fileMenu.add(new OpenCreateNewTagDialogAction(snippetsWindow, "ƒ^ƒO‚Ì’Ç‰Á"));
+		fileMenu.add(new SaveSnippetLibraryToLocalDatabaseAction(snippetsWindow,"ä¿å­˜"));
+		fileMenu.add(new DeleteSnippetsAction(snippetsWindow, "ã‚¹ãƒ‹ãƒšãƒƒãƒˆå‰Šé™¤"));
+		fileMenu.add(new OpenPreferenceDialogAction(snippetsWindow, "è¨­å®š"));
+		fileMenu.add(new OpenCreateNewTagDialogAction(snippetsWindow, "ã‚¿ã‚°ã®è¿½åŠ "));
 		
-		// ƒeƒXƒg—pŒŸõƒEƒCƒ“ƒhƒE•\¦
-		fileMenu.add(new SearchDialogOpenAction(snippetsWindow, "ƒeƒXƒgŒŸõ‘‹•\¦"));
+		// ãƒ†ã‚¹ãƒˆç”¨æ¤œç´¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+		fileMenu.add(new SearchDialogOpenAction(snippetsWindow, "ãƒ†ã‚¹ãƒˆæ¤œç´¢çª“è¡¨ç¤º"));
 		
-		fileMenu.add(new SynchronizeAction(snippetsWindow, "ƒT[ƒo“¯ŠúƒeƒXƒg"));
+		fileMenu.add(new SynchronizeAction(snippetsWindow, "ã‚µãƒ¼ãƒåŒæœŸãƒ†ã‚¹ãƒˆ"));
 		
 		menuManager.add(fileMenu);
 		

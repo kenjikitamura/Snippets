@@ -6,48 +6,48 @@ import jp.rainbowdevil.snippets.model.ISnippet;
 import jp.rainbowdevil.snippets.sync.SynchronizeManager;
 
 /**
- * ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒEƒCƒ“ƒhƒE‚Ìinterface
+ * ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®interface
  * 
- * ŠeOS‚²‚Æ‚ÉUI‚ğì¬‚·‚éê‡‚ÍA‹¤’Ê‚Ìˆ—‚ğ’è‹`‚µ‚½‚±‚Ìinterface‚ğÀ‘•‚·‚éB
+ * å„OSã”ã¨ã«UIã‚’ä½œæˆã™ã‚‹å ´åˆã¯ã€å…±é€šã®å‡¦ç†ã‚’å®šç¾©ã—ãŸã“ã®interfaceã‚’å®Ÿè£…ã™ã‚‹ã€‚
  * 
  * @author kkitamura
  *
  */
 public interface ISnippetWindow {
 	/** 
-	 *   ƒfƒtƒHƒ‹ƒgƒAƒvƒŠ–¼ 
+	 *   ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¢ãƒ—ãƒªå 
 	 * 
-	 * ÀÛ‚Ég—p‚·‚éê‡‚Í getApplicationTitle()‚ğg—p‚·‚é‚±‚ÆB */
+	 * å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹å ´åˆã¯ getApplicationTitle()ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ã€‚ */
 	public static String APP_NAME = "Snippets";
 	
-	/** ƒAƒvƒŠƒP[ƒVƒ‡ƒ“–¼‚ğæ“¾‚·‚é */
+	/** ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åã‚’å–å¾—ã™ã‚‹ */
 	public String getApplicationTitle();
 	
-	/** ƒXƒjƒyƒbƒg‚ğ‘I‘ğó‘Ô‚É‚·‚éB */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’é¸æŠçŠ¶æ…‹ã«ã™ã‚‹ã€‚ */
 	public void selectCurrentSnippet(ISnippet snippet);
 	
 	//public void selectCurrentSnippet
 
-	/** ƒOƒ‹[ƒv‚ğ‘I‘ğó‘Ô‚É‚·‚éB */
+	/** ã‚°ãƒ«ãƒ¼ãƒ—ã‚’é¸æŠçŠ¶æ…‹ã«ã™ã‚‹ã€‚ */
 	public void selectCurrentGroupItem(IGroupItem groupItem);
 	
-	/** ƒXƒjƒyƒbƒg‚Ìó‘Ô‚ğÄ•`‰æ‚·‚éB */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®çŠ¶æ…‹ã‚’å†æç”»ã™ã‚‹ã€‚ */
 	//public void notifyDataChanged();
 	
-	/** SnippetManager‚ğæ“¾‚·‚éB */
+	/** SnippetManagerã‚’å–å¾—ã™ã‚‹ã€‚ */
 	public SnippetManager getSnippetManager();
 	
 	public SynchronizeManager getSynchronizeManager();
 	
-	/** ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğI—¹‚·‚éB */
+	/** ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã™ã‚‹ã€‚ */
 	public void exit();
 	
-	/** ƒXƒjƒyƒbƒg‚Ìó‘Ô‚ğÄ•`‰æ‚·‚éB */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®çŠ¶æ…‹ã‚’å†æç”»ã™ã‚‹ã€‚ */
 	public void refresh();
 	
-	/** ƒEƒCƒ“ƒhƒEƒ^ƒCƒgƒ‹‚ğİ’è‚·‚éB
+	/** ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒˆãƒ«ã‚’è¨­å®šã™ã‚‹ã€‚
 	 * 
-	 *  ˆÈ‰º‚ÌMESSAGE‚Ì•”•ª‚ğw’è‚·‚éB
+	 *  ä»¥ä¸‹ã®MESSAGEã®éƒ¨åˆ†ã‚’æŒ‡å®šã™ã‚‹ã€‚
 	 *  Snppets - MESSAGE */
 	public void setWindowTitleMessage(String titleMessage);
 }

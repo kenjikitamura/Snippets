@@ -24,11 +24,11 @@ public class OpenPreferenceDialogAction extends SnippetWindowAction{
 	
 	public void run() {
 		PreferenceManager pm = new PreferenceManager();
-		PreferenceNode pnode2 = new PreferenceNode("ƒAƒJƒEƒ“ƒg");
+		PreferenceNode pnode2 = new PreferenceNode("ã‚¢ã‚«ã‚¦ãƒ³ãƒˆ");
 		pnode2.setPage(new AccountPreferencePage());
 		pm.addToRoot(pnode2);
 		
-		PreferenceNode pnode3 = new PreferenceNode("Ú‘±");
+		PreferenceNode pnode3 = new PreferenceNode("æ¥ç¶š");
 		pnode3.setPage(new ConnectionPreferencePage());
 		pm.addToRoot(pnode3);
 		
@@ -40,7 +40,7 @@ public class OpenPreferenceDialogAction extends SnippetWindowAction{
 		try {
 			preference.getPreferenceStore().save();
 		} catch (IOException e) {
-			log.debug("İ’è•Û‘¶¸”s",e);
+			log.debug("è¨­å®šä¿å­˜å¤±æ•—",e);
 		}
 	}
 }

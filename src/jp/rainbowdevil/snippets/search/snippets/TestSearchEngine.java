@@ -17,15 +17,15 @@ public class TestSearchEngine extends AbstractSearchEngine {
 	public void search(String keyword, ISearchResultListener listener) {
 		SearchResultItem item;
 		item = new SearchResultItem();
-		item.setBody("ÇŸÇ∞body");
-		item.setTitle("ÇŸÇ∞title");
+		item.setBody("„Åª„Åíbody");
+		item.setTitle("„Åª„Åítitle");
 		item.setSearchEngine(this);
 		listener.notifyResult(item);
 		
 		item = new SearchResultItem();
 		item.setSearchEngine(this);
-		item.setBody("ÇŸÇ∞body2");
-		item.setTitle("ÇŸÇ∞title2");
+		item.setBody("„Åª„Åíbody2");
+		item.setTitle("„Åª„Åítitle2");
 		listener.notifyResult(item);
 		
 		listener.finished();

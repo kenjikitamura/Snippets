@@ -30,21 +30,21 @@ public class SynchronizeAction extends SnippetWindowAction{
 			}else{
 				MessageBox box = new MessageBox(snippetWindow.getShell());
 				box.setText(ISnippetWindow.APP_NAME);
-				box.setMessage("ƒƒjƒ…[‚Ìİ’è‚©‚çAƒAƒJƒEƒ“ƒgî•ñ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+				box.setMessage("ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¨­å®šã‹ã‚‰ã€ã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
 				box.open();
 				return;
 			}
 		}catch(IOException e){
-			log.error("ƒƒOƒCƒ“¸”s",e);
+			log.error("ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—",e);
 			if (e.getMessage().contains("Server returned HTTP response code: 401")){
 				MessageBox box = new MessageBox(snippetWindow.getShell());
 				box.setText(ISnippetWindow.APP_NAME);
-				box.setMessage("”FØ‚É¸”s‚µ‚Ü‚µ‚½B\nƒ[ƒ‹ƒAƒhƒŒƒXAƒpƒXƒ[ƒh‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B\nŒ´ˆö : "+e.getMessage());
+				box.setMessage("èªè¨¼ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\nãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚\nåŸå›  : "+e.getMessage());
 				box.open();
 			}else{
 				MessageBox box = new MessageBox(snippetWindow.getShell());
 				box.setText(ISnippetWindow.APP_NAME);
-				box.setMessage("ƒƒOƒCƒ“‚É¸”s‚µ‚Ü‚µ‚½B\nŒ´ˆö : "+e.getClass().getName() + ":"+e.getMessage());
+				box.setMessage("ãƒ­ã‚°ã‚¤ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\nåŸå›  : "+e.getClass().getName() + ":"+e.getMessage());
 				box.open();	
 			}
 			
@@ -54,17 +54,17 @@ public class SynchronizeAction extends SnippetWindowAction{
 			
 			@Override
 			public void updateProgress(int current, int max) {
-				log.debug("“¯Šú’†("+current+"/"+max+")");
+				log.debug("åŒæœŸä¸­("+current+"/"+max+")");
 			}
 			
 			@Override
 			public void error(String message, Throwable e) {
-				log.debug("“¯ŠúƒGƒ‰[");
+				log.debug("åŒæœŸã‚¨ãƒ©ãƒ¼");
 			}
 				
 			@Override
 			public void complete() {
-				log.debug("“¯ŠúŠ®—¹");
+				log.debug("åŒæœŸå®Œäº†");
 				Display.getDefault().asyncExec(new Runnable() {
 					@Override
 					public void run() {

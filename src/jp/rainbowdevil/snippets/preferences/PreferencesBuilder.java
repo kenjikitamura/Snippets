@@ -17,7 +17,7 @@ public class PreferencesBuilder {
 			try {
 				snippetPreference.load();
 			} catch (IOException e) {
-				log.debug("設定ファイルの読み込みに失敗。初回起動時は問題なし。");
+				log.debug("險ｭ螳壹ヵ繧｡繧､繝ｫ縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励ょ�晏屓襍ｷ蜍墓凾縺ｯ蝠城｡後↑縺励�");
 			}
 		}
 		return snippetPreference;

@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 
 /**
- * 画面左のライブラリ、グループツリーのコンテキストメニュー
+ * 逕ｻ髱｢蟾ｦ縺ｮ繝ｩ繧､繝悶Λ繝ｪ縲√げ繝ｫ繝ｼ繝励ヤ繝ｪ繝ｼ縺ｮ繧ｳ繝ｳ繝�繧ｭ繧ｹ繝医Γ繝九Η繝ｼ
  * @author kkitamura
  *
  */
@@ -20,8 +20,8 @@ public class TreeContextMenuBuilder {
 	
 	public Menu createContextMenu(Control control){
 		MenuManager menuManager = new MenuManager();
-		menuManager.add(new CreateGroupAction(mainWindow, "新しいグループの追加"));
-		menuManager.add(new DeleteGroupAction(mainWindow, "削除"));
+		menuManager.add(new CreateGroupAction(mainWindow, "譁ｰ縺励＞繧ｰ繝ｫ繝ｼ繝励�ｮ霑ｽ蜉"));
+		menuManager.add(new DeleteGroupAction(mainWindow, "蜑企勁"));
 		return menuManager.createContextMenu(control);
 	}
 

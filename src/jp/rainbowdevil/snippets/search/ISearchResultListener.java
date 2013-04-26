@@ -1,9 +1,9 @@
 package jp.rainbowdevil.snippets.search;
 
 /**
- * ŒŸõŒ‹‰Ê’Ê’mƒŠƒXƒi
+ * æ¤œç´¢çµæœé€šçŸ¥ãƒªã‚¹ãƒŠ
  * 
- * ŒŸõƒGƒ“ƒWƒ“‚©‚çŒŸõŒ‹‰Ê‚âŒŸõI—¹‚Ì’Ê’m‚ğó‚¯‚éƒŠƒXƒi
+ * æ¤œç´¢ã‚¨ãƒ³ã‚¸ãƒ³ã‹ã‚‰æ¤œç´¢çµæœã‚„æ¤œç´¢çµ‚äº†ã®é€šçŸ¥ã‚’å—ã‘ã‚‹ãƒªã‚¹ãƒŠ
  * 
  * @author kitamura
  *
@@ -11,13 +11,13 @@ package jp.rainbowdevil.snippets.search;
 public interface ISearchResultListener {
 	
 	/**
-	 * ŒŸõŒ‹‰Ê‚Ì’Ê’m
+	 * æ¤œç´¢çµæœã®é€šçŸ¥
 	 * @param item
 	 */
 	public void notifyResult(SearchResultItem item);
 	
 	/**
-	 * ŒŸõI—¹‚Ì’Ê’m
+	 * æ¤œç´¢çµ‚äº†ã®é€šçŸ¥
 	 */
 	public void finished();
 

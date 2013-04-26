@@ -3,42 +3,42 @@ package jp.rainbowdevil.snippets.model;
 import java.util.List;
 
 /**
- * ƒ‰ƒCƒuƒ‰ƒŠ‚Ü‚½‚ÍƒOƒ‹[ƒv‚Ìinterface
+ * ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¾ãŸã¯ã‚°ãƒ«ãƒ¼ãƒ—ã®interface
  * */
 public interface IGroupItem {
 	
 	public long getId();
 	public void setId(long id);
 	
-	/** ƒcƒŠ[‚É•\¦‚·‚éƒ^ƒCƒgƒ‹‚ğæ“¾‚·‚é */
+	/** ãƒ„ãƒªãƒ¼ã«è¡¨ç¤ºã™ã‚‹ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹ */
 	public String getTitle();
 	
 	public void setTitle(String title);
 	
-	/** q‚ÌƒŠƒXƒg‚ğæ“¾‚·‚éB */
+	/** å­ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚ */
 	public List<IGroupItem> getChildren();
 	
 	/**
-	 * q‚ª‚¢‚é‚©‚ğæ“¾‚·‚éB
+	 * å­ãŒã„ã‚‹ã‹ã‚’å–å¾—ã™ã‚‹ã€‚
 	 * @return
 	 */
 	public boolean hasChildren();
 	
 	/**
-	 * q‚ÌƒTƒCƒY‚ğæ“¾‚·‚éB 
+	 * å­ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ã€‚ 
 	 * @return
 	 */
 	public int getChildrenSize();
 	
 	/**
-	 * ‚±‚ÌƒOƒ‹[ƒv‚ªŠÜ‚ŞƒXƒjƒyƒbƒg‚ÌƒTƒCƒY‚ğ•Ô‚·
+	 * ã“ã®ã‚°ãƒ«ãƒ¼ãƒ—ãŒå«ã‚€ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 	 * @return
 	 */
 	public int getSnippetsSize();
 	
 	/**
-	 * Item‚Ìe‚ğæ“¾‚·‚éB
-	 * ‘¶İ‚µ‚È‚¢ê‡‚Ínull‚ğ•Ô‚·B
+	 * Itemã®è¦ªã‚’å–å¾—ã™ã‚‹ã€‚
+	 * å­˜åœ¨ã—ãªã„å ´åˆã¯nullã‚’è¿”ã™ã€‚
 	 * @return
 	 */
 	public IGroupItem getParent();
@@ -46,26 +46,26 @@ public interface IGroupItem {
 	public void setParent(IGroupItem parent);
 	
 	/**
-	 * q‚ğ’Ç‰Á‚·‚éB
+	 * å­ã‚’è¿½åŠ ã™ã‚‹ã€‚
 	 * @param item
 	 */
 	public void addChild(IGroupItem item);
 	
 	/**
-	 * q‚ğíœ‚·‚éB
-	 * @return íœ‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+	 * å­ã‚’å‰Šé™¤ã™ã‚‹ã€‚
+	 * @return å‰Šé™¤ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
 	 * @param item
 	 */
 	public boolean removeChild(IGroupItem item);
 	
 	/**
-	 * ƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚éƒXƒjƒyƒbƒg‚ÌƒŠƒXƒg‚ğæ“¾‚·‚éB
+	 * ã‚°ãƒ«ãƒ¼ãƒ—ã«å«ã¾ã‚Œã‚‹ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
 	 * @return
 	 */
 	public List<ISnippet> getSnippets();
 	
 	/**
-	 * ƒXƒjƒyƒbƒg‚ğ’Ç‰Á‚·‚éB
+	 * ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’è¿½åŠ ã™ã‚‹ã€‚
 	 * @param snippet
 	 */
 	public void addSnippet(ISnippet snippet);

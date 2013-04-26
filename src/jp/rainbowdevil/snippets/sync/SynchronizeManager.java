@@ -20,7 +20,7 @@ import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONException;
 
 /**
- * ƒXƒjƒyƒbƒg‚Ì“¯Šú‚ğs‚¤B
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®åŒæœŸã‚’è¡Œã†ã€‚
  * @author kkitamura
  *
  */
@@ -40,7 +40,7 @@ public class SynchronizeManager {
 	private String PATH_UPDATE_SNIPPET = "/snippets/";
 	
 	/**
-	 * ƒƒOƒCƒ“‚ğs‚¤B
+	 * ãƒ­ã‚°ã‚¤ãƒ³ã‚’è¡Œã†ã€‚
 	 * 
 	 * @param email
 	 * @param password
@@ -59,158 +59,158 @@ public class SynchronizeManager {
 		
 		AuthencationResultEntity entity = JSON.decode(inputStream,AuthencationResultEntity.class);
         
-        log.debug("Œ‹‰Ê id="+entity.getId()+" email="+entity.getEmail()+" authenticationToken="+entity.getAuthenticationToken());
+        log.debug("çµæœ id="+entity.getId()+" email="+entity.getEmail()+" authenticationToken="+entity.getAuthenticationToken());
         authenticationToken = entity.getAuthenticationToken();
 		return true;
 	}
 	
 	/**
-	 * ƒT[ƒo‚Æ“¯Šú‚ğs‚¤B
+	 * ã‚µãƒ¼ãƒã¨åŒæœŸã‚’è¡Œã†ã€‚
 	 * @param manager
 	 * @return
 	 * @throws IOException 
 	 */
 	public boolean synchronize(SnippetManager manager, SynchronizeListener listener) {
-		log.debug("ƒT[ƒo“¯ŠúŠJn");
+		log.debug("ã‚µãƒ¼ãƒåŒæœŸé–‹å§‹");
 		
-		// ƒ‰ƒCƒuƒ‰ƒŠˆê——æ“¾ ƒT[ƒo‚©‚çæ“¾‚µ‚½ƒ‰ƒCƒuƒ‰ƒŠ‚ğƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ‚Æ‚·‚é
+		// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä¸€è¦§å–å¾— ã‚µãƒ¼ãƒã‹ã‚‰å–å¾—ã—ãŸãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ã™ã‚‹
 		if (authenticationToken == null){
-			log.debug("Å‰‚ÉƒƒOƒCƒ“‚ª•K—v‚Å‚·B");
+			log.debug("æœ€åˆã«ãƒ­ã‚°ã‚¤ãƒ³ãŒå¿…è¦ã§ã™ã€‚");
 			throw new IllegalStateException("Need login.");
 		}
 		
 //---------------------------------------
-// ƒ_ƒEƒ“ƒ[ƒhƒtƒF[ƒY!
+// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚§ãƒ¼ã‚º!
 //
-// for ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ–ˆ‚Ìƒ‹[ƒv{
-//   if ƒ[ƒJƒ‹‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚Æƒo[ƒWƒ‡ƒ“‚ğƒ`ƒFƒbƒN‚µAƒ[ƒJƒ‹‚ªŒÃ‚¢{
-//      ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒXƒjƒyƒbƒgˆê——æ“¾
-//      for ƒT[ƒoƒXƒjƒyƒbƒg–ˆ‚Ìƒ‹[ƒv{
-//        if ƒT[ƒoƒXƒjƒyƒbƒg‚Æƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚Ìƒo[ƒWƒ‡ƒ“‚ğƒ`ƒFƒbƒN‚µAƒ[ƒJƒ‹‚ªŒÃ‚¢{
-//          if ƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚Ì•ÒWÏ‚İƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é{
-//			  •ÒW‚ª‹£‡!!
-//              ¨ •ÒWÏ‚İƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚ğ•Ê–¼‚É•ÏX‚µAV‹Kì¬ƒXƒjƒyƒbƒg‚Æ‚·‚é
-//                 ƒT[ƒoƒXƒjƒyƒbƒg‚ğ•Û‘¶
+// for ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªæ¯ã®ãƒ«ãƒ¼ãƒ—{
+//   if ãƒ­ãƒ¼ã‚«ãƒ«ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯ã—ã€ãƒ­ãƒ¼ã‚«ãƒ«ãŒå¤ã„{
+//      ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§å–å¾—
+//      for ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆæ¯ã®ãƒ«ãƒ¼ãƒ—{
+//        if ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆã¨ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯ã—ã€ãƒ­ãƒ¼ã‚«ãƒ«ãŒå¤ã„{
+//          if ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®ç·¨é›†æ¸ˆã¿ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹{
+//			  ç·¨é›†ãŒç«¶åˆ!!
+//              â†’ ç·¨é›†æ¸ˆã¿ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’åˆ¥åã«å¤‰æ›´ã—ã€æ–°è¦ä½œæˆã‚¹ãƒ‹ãƒšãƒƒãƒˆã¨ã™ã‚‹
+//                 ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ä¿å­˜
 //			}
-//          ƒT[ƒoƒXƒjƒyƒbƒg‚Åƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚ğã‘‚«
-//        }else if ƒT[ƒoƒXƒjƒyƒbƒg‚ªƒ[ƒJƒ‹‚É–³‚¢{
-//          ƒT[ƒoƒXƒjƒyƒbƒg‚ğƒ[ƒJƒ‹‚É•Û‘¶‚·‚éB
+//          ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆã§ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ä¸Šæ›¸ã
+//        }else if ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆãŒãƒ­ãƒ¼ã‚«ãƒ«ã«ç„¡ã„{
+//          ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ãƒ­ãƒ¼ã‚«ãƒ«ã«ä¿å­˜ã™ã‚‹ã€‚
 //        }
 //      }
-//      ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒo[ƒWƒ‡ƒ“‚ğAƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒo[ƒWƒ‡ƒ“‚ÉXV
-//   }else if ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚ÉƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ‚ª–³‚¢{
-//     ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ‚ğƒ[ƒJƒ‹‚É•Û‘¶‚µAƒXƒjƒyƒbƒg‚à‘S•”ƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä•Û‘¶‚·‚éB
+//      ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ã€ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«æ›´æ–°
+//   }else if ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒç„¡ã„{
+//     ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒ­ãƒ¼ã‚«ãƒ«ã«ä¿å­˜ã—ã€ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚‚å…¨éƒ¨ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ä¿å­˜ã™ã‚‹ã€‚
 //   }
 // }
 
-// ‚±‚±‚Ü‚Å‚ÅAƒT[ƒo‚ÌXV‚ª‚·‚×‚Äƒ_ƒEƒ“ƒ[ƒh‚Å‚«‚Ä‚¢‚éB
+// ã“ã“ã¾ã§ã§ã€ã‚µãƒ¼ãƒã®æ›´æ–°ãŒã™ã¹ã¦ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ãã¦ã„ã‚‹ã€‚
 //---------------------------------------
-//  ƒAƒbƒvƒ[ƒhƒtƒF[ƒYI
-//  for ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ–ˆ‚Ìƒ‹[ƒv{
-//    if ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚Ì•ÏXÏ‚İƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚éê‡{
-//      for ƒ[ƒJƒ‹ƒXƒjƒyƒbƒg
-//        if ƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚Ì•ÏXÏ‚İƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡{ 
-//          •ÏXÏ‚İƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚ğƒAƒbƒvƒ[ƒh XV or V‹Kì¬
-//        } else if ƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚ÌíœÏ‚İƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡
-//          ƒT[ƒoƒXƒjƒyƒbƒg‚ğíœ
+//  ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚§ãƒ¼ã‚ºï¼
+//  for ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæ¯ã®ãƒ«ãƒ¼ãƒ—{
+//    if ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å¤‰æ›´æ¸ˆã¿ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹å ´åˆ{
+//      for ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆ
+//        if ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®å¤‰æ›´æ¸ˆã¿ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆ{ 
+//          å¤‰æ›´æ¸ˆã¿ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ æ›´æ–° or æ–°è¦ä½œæˆ
+//        } else if ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®å‰Šé™¤æ¸ˆã¿ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆ
+//          ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’å‰Šé™¤
 //        }
 //      }
-//      ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚Ì•ÏXÏ‚İƒtƒ‰ƒO‚ğíœ
-//    }else if ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚ÌíœÏ‚İƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡
-//      ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ‚ğíœ
-//    }else if ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚ªV‹Kì¬‚³‚ê‚Ä‚¢‚éê‡
-//      ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚ğƒAƒbƒvƒ[ƒh
-//      ‚·‚×‚Ä‚ÌƒXƒjƒyƒbƒg‚ğƒAƒbƒvƒ[ƒh
+//      ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å¤‰æ›´æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’å‰Šé™¤
+//    }else if ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å‰Šé™¤æ¸ˆã¿ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆ
+//      ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å‰Šé™¤
+//    }else if ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæ–°è¦ä½œæˆã•ã‚Œã¦ã„ã‚‹å ´åˆ
+//      ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
+//      ã™ã¹ã¦ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 //    }
 //  }
 		
-		// ƒ_ƒEƒ“ƒ[ƒhƒtƒF[ƒY
+		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚§ãƒ¼ã‚º
 		List<SnippetsLibrary> serverLibraries = null;
 		try {
 			serverLibraries = getUserLibraries();
-			log.debug("ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠˆê——æ“¾ Œ”="+serverLibraries.size());
+			log.debug("ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªä¸€è¦§å–å¾— ä»¶æ•°="+serverLibraries.size());
 		} catch (IOException e) {
 			if (listener != null){
-				listener.error("ƒT[ƒo‚©‚çƒ‰ƒCƒuƒ‰ƒŠƒ_ƒEƒ“ƒ[ƒh‚ÉƒGƒ‰[”­¶",e);
+				listener.error("ã‚µãƒ¼ãƒã‹ã‚‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã«ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ",e);
 				return false;
 			}
 		}
 		List<SnippetsLibrary> localLibraries = manager.getSnippetsLibraries();
 		for (SnippetsLibrary library:localLibraries){
-			log.debug("ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ title="+library.getTitle()+" id="+library.getId()+" update="+library.getUpdateCount()+" isDirty="+library.isDirty());
+			log.debug("ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒª title="+library.getTitle()+" id="+library.getId()+" update="+library.getUpdateCount()+" isDirty="+library.isDirty());
 		}
 		for (SnippetsLibrary serverLibrary:serverLibraries){
-			log.debug("ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ“¯Šú ƒ^ƒCƒgƒ‹="+serverLibrary.getTitle()+" id="+serverLibrary.getId()+" update="+serverLibrary.getUpdateCount());
+			log.debug("ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªåŒæœŸ ã‚¿ã‚¤ãƒˆãƒ«="+serverLibrary.getTitle()+" id="+serverLibrary.getId()+" update="+serverLibrary.getUpdateCount());
 			SnippetsLibrary localLibrary = manager.getSnippetsLibrary(serverLibrary.getId());
-			log.debug("id="+serverLibrary.getId()+"‚Ìƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ="+localLibrary);
+			log.debug("id="+serverLibrary.getId()+"ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒª="+localLibrary);
 			
-			// ƒ[ƒJƒ‹‚ÆƒT[ƒo‚Å“¯‚¶ƒ‰ƒCƒuƒ‰ƒŠ‚ª‘¶İ
+			// ãƒ­ãƒ¼ã‚«ãƒ«ã¨ã‚µãƒ¼ãƒã§åŒã˜ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒå­˜åœ¨
 			if (localLibrary != null){
 				
-				// •ÏX–³‚µ
+				// å¤‰æ›´ç„¡ã—
 				if (localLibrary.getUpdateCount() == serverLibrary.getUpdateCount() && !localLibrary.isDirty()){
-					log.debug("ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ ƒ^ƒCƒgƒ‹="+localLibrary.getTitle()+"‚Í•ÏX–³‚µB");
+					log.debug("ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ã‚¿ã‚¤ãƒˆãƒ«="+localLibrary.getTitle()+"ã¯å¤‰æ›´ç„¡ã—ã€‚");
 					continue;
 				}
 				
-				// ƒT[ƒo‚ÅXV
+				// ã‚µãƒ¼ãƒã§æ›´æ–°
 				if (localLibrary.getUpdateCount() < serverLibrary.getUpdateCount()){
-					log.debug("ƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ ƒ^ƒCƒgƒ‹="+localLibrary.getTitle()+"‚ÍƒT[ƒoã‚Å•ÏX‚³‚ê‚Ä‚¢‚é");
+					log.debug("ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ã‚¿ã‚¤ãƒˆãƒ«="+localLibrary.getTitle()+"ã¯ã‚µãƒ¼ãƒä¸Šã§å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹");
 					try {
 						syncServerLibrary(localLibrary, serverLibrary);
 					} catch (IOException e) {
 						if (listener != null){
-							listener.error("“¯Šú’†‚ÉƒGƒ‰[", e);
+							listener.error("åŒæœŸä¸­ã«ã‚¨ãƒ©ãƒ¼", e);
 							return false;
 						}
 					}
 				}
 			}else{
-				// ƒT[ƒo‚ÉV‹Kì¬ƒ‰ƒCƒuƒ‰ƒŠ‚ª‚ ‚é
-				log.debug("ƒT[ƒo‚ÉV‹Kì¬ƒ‰ƒCƒuƒ‰ƒŠ‚ª‚ ‚é serverLibrary id="+serverLibrary.getId());
+				// ã‚µãƒ¼ãƒã«æ–°è¦ä½œæˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒã‚ã‚‹
+				log.debug("ã‚µãƒ¼ãƒã«æ–°è¦ä½œæˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒã‚ã‚‹ serverLibrary id="+serverLibrary.getId());
 				List<ISnippet> snippets;
 				try {
 					snippets = downloadSnippets(serverLibrary);
-					serverLibrary.setSnippets(snippets);  // ƒXƒjƒyƒbƒgƒ_ƒEƒ“ƒ[ƒh
+					serverLibrary.setSnippets(snippets);  // ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 					manager.getSnippetsLibraries().add(serverLibrary);
 				} catch (IOException e) {
-					log.debug("ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠV‹Kƒ_ƒEƒ“ƒ[ƒh‚ÅAƒXƒjƒyƒbƒgˆê——ƒ_ƒEƒ“ƒ[ƒh‚ÉƒGƒ‰[",e);
+					log.debug("ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªæ–°è¦ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ã€ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã«ã‚¨ãƒ©ãƒ¼",e);
 					if (listener != null){
-						listener.error("ƒXƒjƒyƒbƒgˆê——ƒ_ƒEƒ“ƒ[ƒh‚ÉƒGƒ‰[", e);
+						listener.error("ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã«ã‚¨ãƒ©ãƒ¼", e);
 					}
 				}
 			}
 		}
 		
-		// ƒAƒbƒvƒ[ƒhƒtƒF[ƒY
-		log.debug("ƒAƒbƒvƒ[ƒh!");
+		// ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚§ãƒ¼ã‚º
+		log.debug("ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰!");
 		for(SnippetsLibrary localLibrary:localLibraries){
-			log.debug("ƒ‰ƒCƒuƒ‰ƒŠ title="+localLibrary.getTitle()+" isDirty="+localLibrary.isDirty());
+			log.debug("ãƒ©ã‚¤ãƒ–ãƒ©ãƒª title="+localLibrary.getTitle()+" isDirty="+localLibrary.isDirty());
 			//if (!localLibrary.isDirty()){
 			//	continue;
 			//}
 			
 			for (ISnippet localSnippet:localLibrary.getSnippets()){
-				log.debug("  ƒXƒjƒyƒbƒg title="+localSnippet.getTitle()+" isDirty="+localSnippet.isDirty());
+				log.debug("  ã‚¹ãƒ‹ãƒšãƒƒãƒˆ title="+localSnippet.getTitle()+" isDirty="+localSnippet.isDirty());
 				if (!localSnippet.isDirty()){
 					continue;
 				}
 				
 				try {
 					if (localSnippet.getId() == -1){
-						// V‹Kì¬ƒXƒjƒyƒbƒg‚ğƒAƒbƒvƒ[ƒh
+						// æ–°è¦ä½œæˆã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 						createSnippetToServer(localSnippet);
 					}else{
-						// XV‚³‚ê‚½ƒXƒjƒyƒbƒg‚ğƒAƒbƒvƒ[ƒh
+						// æ›´æ–°ã•ã‚ŒãŸã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 						updateSnippetToServer(localSnippet);
 					}
 				} catch (JSONException e) {
-					log.error("ƒXƒjƒyƒbƒgXV‚ÉƒGƒ‰[",e);
-					listener.error("ƒXƒjƒyƒbƒgXV‚ÉƒGƒ‰[", e);
+					log.error("ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ›´æ–°æ™‚ã«ã‚¨ãƒ©ãƒ¼",e);
+					listener.error("ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ›´æ–°æ™‚ã«ã‚¨ãƒ©ãƒ¼", e);
 					return false;
 				} catch (IOException e) {
-					log.error("ƒXƒjƒyƒbƒgXV‚ÉƒGƒ‰[",e);
-					listener.error("ƒXƒjƒyƒbƒgXV‚ÉƒGƒ‰[", e);
+					log.error("ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ›´æ–°æ™‚ã«ã‚¨ãƒ©ãƒ¼",e);
+					listener.error("ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ›´æ–°æ™‚ã«ã‚¨ãƒ©ãƒ¼", e);
 					return false;
 				}
 			}
@@ -221,37 +221,37 @@ public class SynchronizeManager {
 	}
 	
 	/**
-	 * ƒT[ƒoƒ‰ƒCƒuƒ‰ƒŠ‚Åƒ[ƒJƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚ğXV‚·‚éB
+	 * ã‚µãƒ¼ãƒãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ãƒ­ãƒ¼ã‚«ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’æ›´æ–°ã™ã‚‹ã€‚
 	 * @param localLibrary
 	 * @param serverLibrary
 	 * @throws IOException 
 	 */
 	private void syncServerLibrary(SnippetsLibrary localLibrary, SnippetsLibrary serverLibrary) throws IOException{
-		log.debug("ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒXƒjƒyƒbƒg“¯ŠúŠJn title="+localLibrary.getTitle()+" id="+localLibrary.getId()+" update="+localLibrary.getUpdateCount());
+		log.debug("ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆåŒæœŸé–‹å§‹ title="+localLibrary.getTitle()+" id="+localLibrary.getId()+" update="+localLibrary.getUpdateCount());
 		serverLibrary.setSnippets(downloadSnippets(serverLibrary));
 		List<ISnippet> serverSnippets = serverLibrary.getSnippets();
-		log.debug("ƒT[ƒoƒXƒjƒyƒbƒgˆê—— size="+serverSnippets.size());
+		log.debug("ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§ size="+serverSnippets.size());
 		
 		for(ISnippet serverSnippet:serverSnippets){
 			ISnippet localSnippet = localLibrary.getSnippet(serverSnippet.getId());
 			log.debug("serverSnippet="+serverSnippet+" localSnippet="+localSnippet);
 			
-			// ƒ[ƒJƒ‹‚ª•ÏX‚³‚ê‚Ä‚¨‚ç‚¸AƒT[ƒo‚ªV‚µ‚¢ê‡
+			// ãƒ­ãƒ¼ã‚«ãƒ«ãŒå¤‰æ›´ã•ã‚Œã¦ãŠã‚‰ãšã€ã‚µãƒ¼ãƒãŒæ–°ã—ã„å ´åˆ
 			if (localSnippet != null && !localSnippet.isDirty() && localSnippet.getUpdateCount() < serverSnippet.getUpdateCount()){
-				log.debug("ƒ[ƒJƒ‹‚Å•ÏX‚³‚ê‚Ä‚¨‚ç‚¸AƒT[ƒo‚ªV‚µ‚¢ Snippet="+localSnippet.getTitle()+" body="+localSnippet.getBody());
-				// ƒT[ƒoƒXƒjƒyƒbƒg‚Åƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚ğXV
+				log.debug("ãƒ­ãƒ¼ã‚«ãƒ«ã§å¤‰æ›´ã•ã‚Œã¦ãŠã‚‰ãšã€ã‚µãƒ¼ãƒãŒæ–°ã—ã„ Snippet="+localSnippet.getTitle()+" body="+localSnippet.getBody());
+				// ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆã§ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’æ›´æ–°
 				localLibrary.updateSnippet(serverSnippet);
 			}else
 			
-			// ƒ[ƒJƒ‹‚É‘¶İ‚¹‚¸AƒT[ƒo‚ªV‚µ‚¢ê‡
+			// ãƒ­ãƒ¼ã‚«ãƒ«ã«å­˜åœ¨ã›ãšã€ã‚µãƒ¼ãƒãŒæ–°ã—ã„å ´åˆ
 			if (localSnippet == null){
-				log.debug("ƒ[ƒJƒ‹‚É‘¶İ‚¹‚¸AƒT[ƒo‚ªV‚µ‚¢ Snippet="+serverSnippet.getTitle());
+				log.debug("ãƒ­ãƒ¼ã‚«ãƒ«ã«å­˜åœ¨ã›ãšã€ã‚µãƒ¼ãƒãŒæ–°ã—ã„ Snippet="+serverSnippet.getTitle());
 				localLibrary.updateSnippet(serverSnippet);
 			} else
 			
-			// ƒ[ƒJƒ‹‚ª•ÏX‚³‚ê‚Ä‚¨‚èAƒT[ƒo‚àV‚µ‚¢ê‡
+			// ãƒ­ãƒ¼ã‚«ãƒ«ãŒå¤‰æ›´ã•ã‚Œã¦ãŠã‚Šã€ã‚µãƒ¼ãƒã‚‚æ–°ã—ã„å ´åˆ
 			if (localSnippet.isDirty() && localSnippet.getUpdateCount() < serverSnippet.getUpdateCount()){
-				log.warn("ƒRƒ“ƒtƒŠƒNƒgIƒ[ƒJƒ‹‚ÌƒXƒjƒyƒbƒg‚ğV‹Kì¬‚É•ÏX");
+				log.warn("ã‚³ãƒ³ãƒ•ãƒªã‚¯ãƒˆï¼ãƒ­ãƒ¼ã‚«ãƒ«ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’æ–°è¦ä½œæˆã«å¤‰æ›´");
 				resolveConflict(localLibrary, localSnippet);
 				localLibrary.updateSnippet(serverSnippet);
 								
@@ -261,41 +261,41 @@ public class SynchronizeManager {
 	}
 	
 	/**
-	 * ƒRƒ“ƒtƒŠƒNƒg‚ğ‰ğŒˆ‚·‚éB
+	 * ã‚³ãƒ³ãƒ•ãƒªã‚¯ãƒˆã‚’è§£æ±ºã™ã‚‹ã€‚
 	 * @param snippet
 	 */
 	private void resolveConflict(SnippetsLibrary localLibrary, ISnippet snippet){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
-		// ID‚ğ-1‚É‚µAisDirty‚ğtrue‚É‚·‚é‚±‚Æ‚ÅV‹Kì¬‚Æ‚È‚é
+		// IDã‚’-1ã«ã—ã€isDirtyã‚’trueã«ã™ã‚‹ã“ã¨ã§æ–°è¦ä½œæˆã¨ãªã‚‹
 		snippet.setId(-1);
 		snippet.setDirty(true);
-		snippet.setTitle(snippet.getTitle()+" ƒRƒ“ƒtƒŠƒNƒg("+sdf.format(new Date())+")");
+		snippet.setTitle(snippet.getTitle()+" ã‚³ãƒ³ãƒ•ãƒªã‚¯ãƒˆ("+sdf.format(new Date())+")");
 	}
 	
 	/**
-	 * ƒT[ƒo‚©‚çƒ‰ƒCƒuƒ‰ƒŠ‚ÉŠÜ‚Ü‚ê‚é‚·‚×‚Ä‚ÌƒXƒjƒyƒbƒg‚ğæ“¾‚·‚éB
+	 * ã‚µãƒ¼ãƒã‹ã‚‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«å«ã¾ã‚Œã‚‹ã™ã¹ã¦ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
 	 * @param library
 	 * @return
 	 * @throws IOException
 	 */
 	private List<ISnippet> downloadSnippets(SnippetsLibrary library) throws IOException{
-		log.debug("ƒ‰ƒCƒuƒ‰ƒŠ(id="+ library.getId() +")‚ÌƒXƒjƒyƒbƒgˆê——æ“¾ŠJnB");
+		log.debug("ãƒ©ã‚¤ãƒ–ãƒ©ãƒª(id="+ library.getId() +")ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§å–å¾—é–‹å§‹ã€‚");
 		ServerConnection connection = createServerConnection(Method.GET);
 		String url = BASE_URL + PATH_LIBRARY_SNIPETTS;
 		url = replaceParameter(url, library.getId());
 		InputStream inputStream = open(connection, url);
 		List<ISnippet> list = JSON.decode(inputStream, (new ArrayList<Snippet>(){}).getClass().getGenericSuperclass());
-		log.debug("ƒ‰ƒCƒuƒ‰ƒŠ(id="+ library.getId() +")‚ÌƒXƒjƒyƒbƒgˆê——æ“¾Š®—¹BŒ”="+list.size());
+		log.debug("ãƒ©ã‚¤ãƒ–ãƒ©ãƒª(id="+ library.getId() +")ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§å–å¾—å®Œäº†ã€‚ä»¶æ•°="+list.size());
 		for(ISnippet snippet:list){
 			snippet.setSnippetsLibrary(library);
-			log.debug("ƒXƒjƒyƒbƒgƒ_ƒEƒ“ƒ[ƒh title="+snippet.getTitle());
+			log.debug("ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ title="+snippet.getTitle());
 		}
 		return list;
 	}
 	
 	/**
-	 * ƒT[ƒoƒXƒjƒyƒbƒg‚ğAƒ[ƒJƒ‹‚ÌƒXƒjƒyƒbƒg‚ÅXV‚·‚éB
+	 * ã‚µãƒ¼ãƒã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã€ãƒ­ãƒ¼ã‚«ãƒ«ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆã§æ›´æ–°ã™ã‚‹ã€‚
 	 * local -> UPDATE -> server
 	 * 
 	 * @param snippet
@@ -304,7 +304,7 @@ public class SynchronizeManager {
 	 * @throws IOException
 	 */
 	private boolean updateSnippetToServer(ISnippet snippet) throws IOException{
-		log.debug("ƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚Ì•ÏX‚ğƒAƒbƒvƒ[ƒh title="+snippet.getTitle());
+		log.debug("ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®å¤‰æ›´ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ title="+snippet.getTitle());
 		ServerConnection connection = createServerConnection(Method.PUT);
 		String url = BASE_URL + PATH_UPDATE_SNIPPET+snippet.getId();
 		
@@ -323,7 +323,7 @@ public class SynchronizeManager {
 	}
 	
 	/**
-	 * V‹Kì¬ƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚ğƒT[ƒo‚ÉƒAƒbƒvƒ[ƒh‚·‚éB
+	 * æ–°è¦ä½œæˆãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚µãƒ¼ãƒã«ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚
 	 * local -> CREATE -> server
 	 * 
 	 * @param snippet
@@ -331,7 +331,7 @@ public class SynchronizeManager {
 	 * @throws IOException
 	 */
 	private boolean createSnippetToServer(ISnippet snippet) throws IOException{
-		log.debug("V‹Kì¬ƒ[ƒJƒ‹ƒXƒjƒyƒbƒg‚ğƒAƒbƒvƒ[ƒh title="+snippet.getTitle());
+		log.debug("æ–°è¦ä½œæˆãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ title="+snippet.getTitle());
 		ServerConnection connection = createServerConnection(Method.POST);
 		String url = BASE_URL + PATH_UPDATE_SNIPPET;
 		
@@ -348,7 +348,7 @@ public class SynchronizeManager {
 		snippet.setId(updatedSnippet.getId());
 		snippet.setUpdateCount(updatedSnippet.getUpdateCount());
 		snippet.setDirty(false);
-		log.debug("V‹Kì¬‚ÌƒAƒbƒvƒ[ƒhŠ®—¹ V‹Kì¬‚µ‚½ƒXƒjƒyƒbƒg‚ÌV‚µ‚¢ID‚Í("+snippet.getId()+")");
+		log.debug("æ–°è¦ä½œæˆã®ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰å®Œäº† æ–°è¦ä½œæˆã—ãŸã‚¹ãƒ‹ãƒšãƒƒãƒˆã®æ–°ã—ã„IDã¯("+snippet.getId()+")");
 		return true;
 	}
 	
@@ -361,7 +361,7 @@ public class SynchronizeManager {
 	}
 	
 	/**
-	 * ƒ†[ƒU‚Ìƒ‰ƒCƒuƒ‰ƒŠˆê——‚ğæ“¾‚·‚éB
+	 * ãƒ¦ãƒ¼ã‚¶ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä¸€è¦§ã‚’å–å¾—ã™ã‚‹ã€‚
 	 * @return
 	 * @throws IOException 
 	 */

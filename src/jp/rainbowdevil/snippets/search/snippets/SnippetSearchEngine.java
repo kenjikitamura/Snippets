@@ -18,7 +18,7 @@ import jp.rainbowdevil.snippets.ui.ISnippetWindow;
 import jp.rainbowdevil.snippets.ui.windows.WindowsSnippetWindow;
 
 /**
- * ƒXƒjƒyƒbƒgŒŸõƒGƒ“ƒWƒ“
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ¤œç´¢ã‚¨ãƒ³ã‚¸ãƒ³
  * 
  */
 public class SnippetSearchEngine extends AbstractSearchEngine{
@@ -36,7 +36,7 @@ public class SnippetSearchEngine extends AbstractSearchEngine{
 		for(SnippetsLibrary library:libraries){
 			List<ISnippet> list = library.getSnippets();
 			for(ISnippet snippet:list){
-				//log.debug("ƒXƒjƒyƒbƒgŒŸõ title="+snippet.getTitle().toLowerCase()+" body="+ snippet.getBody().toLowerCase()+" contains="+lowerCaseKeyword);
+				//log.debug("ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ¤œç´¢ title="+snippet.getTitle().toLowerCase()+" body="+ snippet.getBody().toLowerCase()+" contains="+lowerCaseKeyword);
 				if (snippet.getTitle().toLowerCase().contains(lowerCaseKeyword) ||
 					snippet.getBody().toLowerCase().contains(lowerCaseKeyword)	){
 					SnippetSearchEngineResult item = new SnippetSearchEngineResult();
@@ -51,13 +51,13 @@ public class SnippetSearchEngine extends AbstractSearchEngine{
 		/*
 		SearchResultItem item;
 		item = new SearchResultItem();
-		item.setBody("‚Ù‚°body");
-		item.setTitle("‚Ù‚°title");
+		item.setBody("ã»ã’body");
+		item.setTitle("ã»ã’title");
 		listener.notifyResult(item);
 		
 		item = new SearchResultItem();
-		item.setBody("‚Ù‚°body2");
-		item.setTitle("‚Ù‚°title2");
+		item.setBody("ã»ã’body2");
+		item.setTitle("ã»ã’title2");
 		listener.notifyResult(item);
 		*/
 		listener.finished();
@@ -65,7 +65,7 @@ public class SnippetSearchEngine extends AbstractSearchEngine{
 	
 	@Override
 	public void openSearchResultItem(SearchResultItem item) {
-		log.debug("‘I‘ğ "+item.getTitle());
+		log.debug("é¸æŠ "+item.getTitle());
 		SnippetSearchEngineResult snippetSearchEngineResult = (SnippetSearchEngineResult)item;
 		
 		IGroupItem groupItem = snippetWindow.getSnippetManager().getGroupItem(snippetSearchEngineResult.getSnippet());

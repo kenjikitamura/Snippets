@@ -10,7 +10,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 /**
- * ƒAƒCƒeƒ€(ƒXƒjƒyƒbƒgAƒm[ƒg)‚ÌW‡
+ * ã‚¢ã‚¤ãƒ†ãƒ (ã‚¹ãƒ‹ãƒšãƒƒãƒˆã€ãƒãƒ¼ãƒˆ)ã®é›†åˆ
  * @author kkitamura
  *
  */
@@ -18,15 +18,15 @@ import org.simpleframework.xml.Root;
 public class SnippetsLibrary implements IGroupItem{
 	
 	@ElementList
-	/** ƒXƒjƒyƒbƒg‚ğƒOƒ‹[ƒsƒ“ƒO‚·‚éGroupItem‚ÌƒŠƒXƒg */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚°ãƒ«ãƒ¼ãƒ”ãƒ³ã‚°ã™ã‚‹GroupItemã®ãƒªã‚¹ãƒˆ */
 	private List<IGroupItem> groupList;
 	
 	@ElementList
-	/** ƒ‰ƒCƒuƒ‰ƒŠ‚ÉŠÜ‚Ü‚ê‚éƒXƒjƒyƒbƒg */
+	/** ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«å«ã¾ã‚Œã‚‹ã‚¹ãƒ‹ãƒšãƒƒãƒˆ */
 	private List<ISnippet> snippets; 
 	
 	@Attribute
-	/** ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ^ƒCƒgƒ‹ */
+	/** ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¿ã‚¤ãƒˆãƒ« */
 	private String title;
 	
 	@Element(required=false)
@@ -36,15 +36,15 @@ public class SnippetsLibrary implements IGroupItem{
 	private int createUserId;
 	
 	@Element(required=true)
-	/** ƒT[ƒoã‚ÌID ƒT[ƒo‚ÉƒAƒbƒv‚µ‚Ä‚¢‚È‚¢ê‡‚Í-1 */
+	/** ã‚µãƒ¼ãƒä¸Šã®ID ã‚µãƒ¼ãƒã«ã‚¢ãƒƒãƒ—ã—ã¦ã„ãªã„å ´åˆã¯-1 */
 	private long id = -1;
 	
 	@Element(required=true)
-	/** ƒT[ƒo‚Æ“¯Šú‚µ‚½Û‚Ìƒo[ƒWƒ‡ƒ“”Ô† */
+	/** ã‚µãƒ¼ãƒã¨åŒæœŸã—ãŸéš›ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå· */
 	private long updateCount = -1;
 	
 	@Element(required=true)
-	/** •ÏX‚µ‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO */
+	/** å¤‰æ›´ã—ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚° */
 	private boolean isDirty = false;
 	
 	public SnippetsLibrary(){
@@ -57,8 +57,8 @@ public class SnippetsLibrary implements IGroupItem{
 	}
 	
 	/**
-	 * w’è‚ÌID‚ÌƒXƒjƒyƒbƒg‚ğæ“¾‚·‚éB
-	 * ‘¶İ‚µ‚È‚¢ê‡‚Ínull‚ğ•Ô‚·B
+	 * æŒ‡å®šã®IDã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+	 * å­˜åœ¨ã—ãªã„å ´åˆã¯nullã‚’è¿”ã™ã€‚
 	 * @param id
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class SnippetsLibrary implements IGroupItem{
 	}
 	
 	/**
-	 * ƒXƒjƒyƒbƒg‚ğˆø”‚ÌƒXƒjƒyƒbƒg‚ÅXV‚·‚éB
+	 * ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’å¼•æ•°ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆã§æ›´æ–°ã™ã‚‹ã€‚
 	 * @param snippet
 	 */
 	public void updateSnippet(ISnippet snippet){
@@ -133,7 +133,7 @@ public class SnippetsLibrary implements IGroupItem{
 	
 	
 	//------------------------------------------------
-	// IGroupItem‚Ìƒƒ\ƒbƒh
+	// IGroupItemã®ãƒ¡ã‚½ãƒƒãƒ‰
 	@Override
 	public void addChild(IGroupItem item) {
 		addGroupItem(item);		

@@ -8,16 +8,16 @@ import org.eclipse.jface.preference.StringFieldEditor;
 public class AccountPreferencePage extends FieldEditorPreferencePage{
 
 	public AccountPreferencePage(){
-		setTitle("ƒAƒJƒEƒ“ƒg");
-        setMessage("ƒAƒJƒEƒ“ƒgİ’è");
+		setTitle("ã‚¢ã‚«ã‚¦ãƒ³ãƒˆ");
+        setMessage("ã‚¢ã‚«ã‚¦ãƒ³ãƒˆè¨­å®š");
 	}
 	
 	@Override
 	protected void createFieldEditors() {
-		addField(new StringFieldEditor(ISnippetPreference.ACCOUNT_EMAIL, "ƒ[ƒ‹ƒAƒhƒŒƒX:",
+		addField(new StringFieldEditor(ISnippetPreference.ACCOUNT_EMAIL, "ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹:",
 		        getFieldEditorParent()));
 		
-		PasswordFieldEditor password = new PasswordFieldEditor(ISnippetPreference.ACCOUNT_PASSWORD, "ƒpƒXƒ[ƒh:",
+		PasswordFieldEditor password = new PasswordFieldEditor(ISnippetPreference.ACCOUNT_PASSWORD, "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰:",
 		        getFieldEditorParent());
 		addField(password);
 	}

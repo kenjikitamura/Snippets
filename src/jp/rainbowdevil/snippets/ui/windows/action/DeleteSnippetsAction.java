@@ -24,14 +24,14 @@ public class DeleteSnippetsAction extends SnippetWindowAction{
 			MessageBox msg = new MessageBox(snippetWindow.getShell(), SWT.OK | SWT.CANCEL);
 			msg.setText(ISnippetWindow.APP_NAME);
 			if (list.size() == 1){
-				msg.setMessage("ƒXƒjƒyƒbƒg("+list.get(0).getTitle()+")‚ğíœ‚µ‚Ü‚·‚©B");
+				msg.setMessage("ã‚¹ãƒ‹ãƒšãƒƒãƒˆ("+list.get(0).getTitle()+")ã‚’å‰Šé™¤ã—ã¾ã™ã‹ã€‚");
 			}else{
-				msg.setMessage("ƒXƒjƒyƒbƒg‚ğ "+list.size()+"Œíœ‚µ‚Ü‚·‚©B");
+				msg.setMessage("ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ "+list.size()+"ä»¶å‰Šé™¤ã—ã¾ã™ã‹ã€‚");
 			}
 			int ret = msg.open();
 			if (ret == SWT.OK){
 				for(ISnippet snippet:list){
-					log.debug("ƒXƒjƒyƒbƒg‚ğíœ title="+snippet.getTitle());
+					log.debug("ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’å‰Šé™¤ title="+snippet.getTitle());
 					snippet.setDeleted(true);
 					snippet.setDirty(true);
 					snippet.getSnippetsLibrary().setDirty(true);

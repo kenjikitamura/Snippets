@@ -9,7 +9,7 @@ import jp.rainbowdevil.snippets.search.snippets.TestSearchEngine;
 import jp.rainbowdevil.snippets.ui.ISnippetWindow;
 
 /**
- * 検索機能管理クラス
+ * 讀懃ｴ｢讖溯�ｽ邂｡逅�繧ｯ繝ｩ繧ｹ
  * @author kitamura
  *
  */

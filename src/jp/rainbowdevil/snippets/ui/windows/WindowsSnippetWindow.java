@@ -70,7 +70,7 @@ import org.eclipse.swt.widgets.Text;
 import org.markdown4j.Markdown4jProcessor;
 
 /**
- * Snippets ƒƒCƒ“ƒEƒCƒ“ƒhƒE
+ * Snippets ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  * @author kitamura
  *
  */
@@ -78,57 +78,57 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	
 	protected static Logger log = Logger.getLogger( WindowsSnippetWindow.class ); 	
 	
-	/** ƒXƒjƒyƒbƒgŠÇ—ƒNƒ‰ƒX */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹ */
 	private SnippetManager snippetManager;
 	
-	/** ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚ğ•\¦‚·‚éTreeViewer */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’è¡¨ç¤ºã™ã‚‹TreeViewer */
 	private TreeViewer libraryTreeViewer;
 	
-	/** ƒXƒjƒyƒbƒgˆê——‚ğ•\¦‚·‚éTableViewer */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§ã‚’è¡¨ç¤ºã™ã‚‹TableViewer */
 	private TableViewer snippetsTableViewer;
 	
-	/** ƒXƒjƒyƒbƒg‚ğ•\¦‚·‚éStypedText */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’è¡¨ç¤ºã™ã‚‹StypedText */
 	private StyledText styledText;
 	
 	private Button editInspectorButton;
 	private Button hideInspectorButton;
 	
-	/** ‰æ–Ê‚ğ\¬‚·‚éSashForm */
+	/** ç”»é¢ã‚’æ§‹æˆã™ã‚‹SashForm */
 	private SashForm topSashForm;
 	private SashForm rightSashForm;
 	
-	/** ƒXƒjƒyƒbƒgƒ^ƒCƒgƒ‹•ÒWText */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚¿ã‚¤ãƒˆãƒ«ç·¨é›†Text */
 	private Text snippetTitleText;	
 	
-	/** ƒXƒjƒyƒbƒgƒm[ƒg•ÒWText */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒãƒ¼ãƒˆç·¨é›†Text */
 	private Text snippetNoteText;
 	
-	/** ƒXƒjƒyƒbƒgˆø—p•ÒWText */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆå¼•ç”¨ç·¨é›†Text */
 	private Text snippetRelatedUrlText;
 	
-	/** ƒXƒjƒyƒbƒgìÒ•ÒWText */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆä½œè€…ç·¨é›†Text */
 	private Text snippetAuthorText;
 	
-	/** Œ»İ•ÒW’†‚ÌƒXƒjƒyƒbƒg */
+	/** ç¾åœ¨ç·¨é›†ä¸­ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆ */
 	private ISnippet currentSnippet;
 	
-	/** Œ»İŠJ‚¢‚Ä‚¢‚éƒOƒ‹[ƒv */
+	/** ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ã‚°ãƒ«ãƒ¼ãƒ— */
 	private IGroupItem currentGroupItem;
 	
-	/** “¯ŠúŠÇ—ƒNƒ‰ƒX */
+	/** åŒæœŸç®¡ç†ã‚¯ãƒ©ã‚¹ */
 	private SynchronizeManager synchronizeManager;
 	
-	/** ©“®“¯Šú—pScheduledExecutorService */
+	/** è‡ªå‹•åŒæœŸç”¨ScheduledExecutorService */
 	private ScheduledExecutorService executorService = Executors.newScheduledThreadPool(5);
 	
-	/** ÅŒã‚É•ÒW‚µ‚Ä‚©‚ç‰½•b‚Å©“®“¯Šú‚ğs‚¤‚© */
+	/** æœ€å¾Œã«ç·¨é›†ã—ã¦ã‹ã‚‰ä½•ç§’ã§è‡ªå‹•åŒæœŸã‚’è¡Œã†ã‹ */
 	private long AUTO_SYNC_TIMER = 30 * 1000;
 	
-	/** ÅŒã‚É•ÒW‚µ‚½ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv */
+	/** æœ€å¾Œã«ç·¨é›†ã—ãŸã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ— */
 	private long lastModifyTimestamp;
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	public WindowsSnippetWindow() {
 		super(null);
@@ -136,11 +136,11 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetManager.setSnippetsWindow(this);
 		synchronizeManager = new SynchronizeManager();
 		try {
-			log.debug("‹N“®‚ÉƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ“Ç‚İ‚İŠJn");
+			log.debug("èµ·å‹•æ™‚ã«ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªèª­ã¿è¾¼ã¿é–‹å§‹");
 			snippetManager.loadSnippetLibraryFromLocalDatabase();
-			log.debug("‹N“®‚ÉƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ“Ç‚İ‚İŠ®—¹");
+			log.debug("èµ·å‹•æ™‚ã«ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªèª­ã¿è¾¼ã¿å®Œäº†");
 		} catch (IOException e) {
-			log.error("‹N“®‚ÌƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚Ì“Ç‚İ‚İ‚É¸”s",e);
+			log.error("èµ·å‹•æ™‚ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®èª­ã¿è¾¼ã¿ã«å¤±æ•—",e);
 		}
 	}
 	
@@ -153,7 +153,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	protected ToolBarManager createToolBarManager(int style) {
 		ToolBarManager toolBarManager = new ToolBarManager(style);
 		//toolBarManager.add(new ExitAction(this));
-		toolBarManager.add(new CreateSnippetAction(this, "V‹Kì¬"));
+		toolBarManager.add(new CreateSnippetAction(this, "æ–°è¦ä½œæˆ"));
 		return toolBarManager;
 	}
 	
@@ -258,11 +258,11 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetsTableViewer = new TableViewer(rightSashForm);
 		snippetsTableViewer.setLabelProvider(new SnippetsTableLabelProvider());
 		TableColumn col1 = new TableColumn(snippetsTableViewer.getTable(), SWT.LEFT);
-		col1.setText("ƒ^ƒCƒgƒ‹");
+		col1.setText("ã‚¿ã‚¤ãƒˆãƒ«");
 		col1.setWidth(400);
 		
 		TableColumn col2 = new TableColumn(snippetsTableViewer.getTable(), SWT.LEFT);
-		col2.setText("XV“ú");
+		col2.setText("æ›´æ–°æ—¥");
 		col2.setWidth(100);
 		
 		snippetsTableViewer.getTable().setHeaderVisible(true);
@@ -295,7 +295,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		gridLayout.numColumns = 1;
 		snippetEditorComposite.setLayout(gridLayout);
 		
-		// ƒXƒjƒyƒbƒgƒwƒbƒ_[
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ˜ãƒƒãƒ€ãƒ¼
 		Composite snippetHeaderComposite = new Composite(snippetEditorComposite, SWT.NULL);
 		GridLayout snippetHeaderCompositeLayout = new GridLayout();
 		snippetHeaderCompositeLayout.numColumns = 2;
@@ -307,7 +307,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetHeaderComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		snippetHeaderComposite.setLayout(snippetHeaderCompositeLayout);
 		
-		// ƒXƒjƒyƒbƒg•ÏX‚ÌXVƒŠƒXƒi
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆå¤‰æ›´æ™‚ã®æ›´æ–°ãƒªã‚¹ãƒŠ
 		ModifyListener snippetModifyListener = new ModifyListener() {			
 			@Override
 			public void modifyText(ModifyEvent arg0) {
@@ -315,7 +315,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			}
 		};
 		
-		// î•ñ•\¦ƒ{ƒ^ƒ“
+		// æƒ…å ±è¡¨ç¤ºãƒœã‚¿ãƒ³
 		Composite inspectorComposite = new Composite(snippetHeaderComposite, SWT.NONE);
 		GridData inspectorCompositeLayoutData = new GridData(GridData.FILL_HORIZONTAL);
 		inspectorCompositeLayoutData.horizontalSpan = 2;
@@ -329,7 +329,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		inspectorCompositeLayout.marginWidth = 0;
 		inspectorComposite.setLayout(inspectorCompositeLayout);
 		
-		// ƒXƒjƒyƒbƒgƒ^ƒCƒgƒ‹
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚¿ã‚¤ãƒˆãƒ«
 		snippetTitleText = new Text(inspectorComposite, SWT.BORDER);
 		snippetTitleText.setText("");
 		snippetTitleText.setEnabled(false);
@@ -345,10 +345,10 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		
 		
 		editInspectorButton = new Button(inspectorComposite, SWT.NONE);
-		editInspectorButton.setText("•ÒW");
+		editInspectorButton.setText("ç·¨é›†");
 		
 		hideInspectorButton = new Button(inspectorComposite, SWT.NONE);
-		hideInspectorButton.setText("”ñ•\¦");
+		hideInspectorButton.setText("éè¡¨ç¤º");
 		
 		
 		styledText = new StyledText(snippetEditorComposite, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -357,7 +357,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		GridData styledTextLayoutData = new GridData(GridData.FILL_BOTH);
 		styledText.setLayoutData(styledTextLayoutData);
 		
-		// ƒXƒjƒyƒbƒgƒm[ƒg
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒãƒ¼ãƒˆ
 		Label snippetNoteLabel = new Label(snippetHeaderComposite, SWT.NULL);
 		snippetNoteLabel.setText("Notes:");
 		snippetNoteLabel.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
@@ -368,7 +368,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetNoteText.addModifyListener(snippetModifyListener);
 		snippetNoteText.setEnabled(false);
 		
-		// ƒXƒjƒyƒbƒgˆø—pURL
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆå¼•ç”¨URL
 		Label snippetRelatedUrlLabel = new Label(snippetHeaderComposite, SWT.NULL);
 		snippetRelatedUrlLabel.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		snippetRelatedUrlLabel.setText("Related URL:");
@@ -377,7 +377,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetRelatedUrlText.addModifyListener(snippetModifyListener);
 		snippetRelatedUrlText.setEnabled(false);
 		
-		// ƒXƒjƒyƒbƒgìÒ–¼
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆä½œè€…å
 		Label snippetAuthorLabel = new Label(snippetHeaderComposite, SWT.NULL);
 		snippetAuthorLabel.setText("Author:");
 		snippetAuthorLabel.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
@@ -396,7 +396,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			String html = markdown4jProcessor.process("This is a **bold** text~~~~~~~\nif (a > 3) {\n  moveShip(5 * gravity, DOWN);\n}\n~~~~~~~");
 			log.debug("html="+html);
 		} catch (IOException e) {
-			log.debug("ˆ—‚É¸”s",e);
+			log.debug("å‡¦ç†ã«å¤±æ•—",e);
 		}
 		
 		initAutoSyncTimer();
@@ -405,8 +405,8 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	}
 	
 	/**
-	 * ©“®“¯Šúƒ^ƒCƒ}[‚ğ‰Šú‰»
-	 * 1•ª‚²‚Æ‚Éƒ`ƒFƒbƒN‚·‚éB
+	 * è‡ªå‹•åŒæœŸã‚¿ã‚¤ãƒãƒ¼ã‚’åˆæœŸåŒ–
+	 * 1åˆ†ã”ã¨ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
 	 */
 	private void initAutoSyncTimer(){
 		executorService.scheduleWithFixedDelay(new Runnable() {			
@@ -415,18 +415,18 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 				try{
 					checkAutoSync();
 				}catch(Exception e){
-					log.error("©“®“¯Šú’†‚ÉƒGƒ‰[”­¶",e);
+					log.error("è‡ªå‹•åŒæœŸä¸­ã«ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ",e);
 				}
 			}
 		}, 1, 1, TimeUnit.MINUTES);
 	}
 	
 	/**
-	 * ©“®“¯Šúƒ`ƒFƒbƒN
+	 * è‡ªå‹•åŒæœŸãƒã‚§ãƒƒã‚¯
 	 */
 	private void checkAutoSync(){
 		long diff = System.currentTimeMillis() - lastModifyTimestamp;
-		log.debug("©“®“¯Šúƒ`ƒFƒbƒN diff="+diff + " lastModifyTimestamp=" + lastModifyTimestamp);
+		log.debug("è‡ªå‹•åŒæœŸãƒã‚§ãƒƒã‚¯ diff="+diff + " lastModifyTimestamp=" + lastModifyTimestamp);
 		if (diff > AUTO_SYNC_TIMER && lastModifyTimestamp != 0){
 			syncSnippets();
 			lastModifyTimestamp = 0;
@@ -434,7 +434,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	}
 	
 	/**
-	 * ƒT[ƒo“¯Šú‚ğs‚¤
+	 * ã‚µãƒ¼ãƒåŒæœŸã‚’è¡Œã†
 	 */
 	private void syncSnippets(){
 		try{
@@ -444,15 +444,15 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			if (email != null){
 				getSynchronizeManager().login(email, password);
 			}else{
-				setStatusAsync("©“®“¯Šú¸”s : ƒAƒJƒEƒ“ƒgî•ñ‚ğ“o˜^‚µ‚Ä‚­‚¾‚³‚¢B");
+				setStatusAsync("è‡ªå‹•åŒæœŸå¤±æ•— : ã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±ã‚’ç™»éŒ²ã—ã¦ãã ã•ã„ã€‚");
 				return;
 			}
 		}catch(IOException e){
-			log.error("ƒƒOƒCƒ“¸”s",e);
+			log.error("ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—",e);
 			if (e.getMessage().contains("Server returned HTTP response code: 401")){
-				setStatusAsync("©“®“¯Šú¸”s : ”FØ‚É¸”s‚µ‚Ü‚µ‚½B"+e.getMessage());
+				setStatusAsync("è‡ªå‹•åŒæœŸå¤±æ•— : èªè¨¼ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"+e.getMessage());
 			}else{
-				setStatusAsync("©“®“¯Šú¸”s : "+e.getClass().getName()+" : "+e.getMessage());
+				setStatusAsync("è‡ªå‹•åŒæœŸå¤±æ•— : "+e.getClass().getName()+" : "+e.getMessage());
 			}
 			
 			return;
@@ -461,17 +461,17 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			
 			@Override
 			public void updateProgress(int current, int max) {
-				log.debug("“¯Šú’†("+current+"/"+max+")");
+				log.debug("åŒæœŸä¸­("+current+"/"+max+")");
 			}
 			
 			@Override
 			public void error(String message, Throwable e) {
-				log.debug("“¯ŠúƒGƒ‰[");
+				log.debug("åŒæœŸã‚¨ãƒ©ãƒ¼");
 			}
 				
 			@Override
 			public void complete() {
-				log.debug("“¯ŠúŠ®—¹");
+				log.debug("åŒæœŸå®Œäº†");
 				Display.getDefault().asyncExec(new Runnable() {
 					@Override
 					public void run() {
@@ -494,7 +494,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	
 	@Override
 	/**
-	 * ƒOƒ‹[ƒv‚ğ‘I‘ğ‚·‚éB
+	 * ã‚°ãƒ«ãƒ¼ãƒ—ã‚’é¸æŠã™ã‚‹ã€‚
 	 */
 	public void selectCurrentGroupItem(IGroupItem groupItem) {
 		StructuredSelection selection = new StructuredSelection(groupItem);
@@ -513,7 +513,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			currentSnippet.setDirty(true);			
 			snippetsTableViewer.refresh();
 			
-			// ÅŒã‚ÉXV‚µ‚½‚ğXV
+			// æœ€å¾Œã«æ›´æ–°ã—ãŸæ™‚åˆ»ã‚’æ›´æ–°
 			lastModifyTimestamp = System.currentTimeMillis();
 		}
 	}
@@ -523,7 +523,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		super.configureShell(shell);
 		shell.setText("Snippets");
 		
-		// ‰æ–ÊˆÊ’u‚Ì•œŒ³
+		// ç”»é¢ä½ç½®ã®å¾©å…ƒ
 		ISnippetPreference snippetPreference = PreferencesBuilder.getSnippetPreference();
 		int x = snippetPreference.getInt(ISnippetPreference.LAST_WINDOW_X, 0);
 		int y = snippetPreference.getInt(ISnippetPreference.LAST_WINDOW_Y, 0);
@@ -534,14 +534,14 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	
 	@Override
 	protected void handleShellCloseEvent() {
-		// ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚Ì•Û‘¶
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ä¿å­˜
 		try {
 			snippetManager.saveSnippetLibraryToLocalDatabase();
 		} catch (IOException e) {
-			log.error("I—¹‚ÌƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚Ì•Û‘¶‚É¸”s",e);
+			log.error("çµ‚äº†æ™‚ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ä¿å­˜ã«å¤±æ•—",e);
 		}
 		
-		// ‰æ–ÊˆÊ’u‚Ì•Û‘¶
+		// ç”»é¢ä½ç½®ã®ä¿å­˜
 		ISnippetPreference snippetPreference = PreferencesBuilder.getSnippetPreference();
 		snippetPreference.setValue(ISnippetPreference.LAST_WINDOW_WIDTH, getShell().getBounds().width);
 		snippetPreference.setValue(ISnippetPreference.LAST_WINDOW_HEIGHT, getShell().getBounds().height);
@@ -549,9 +549,9 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 		snippetPreference.setValue(ISnippetPreference.LAST_WINDOW_Y, getShell().getBounds().y);
 		snippetPreference.saveQuietly();
 		
-		// ©“®•Û‘¶‚ğ’â~
+		// è‡ªå‹•ä¿å­˜ã‚’åœæ­¢
 		List<Runnable> list = executorService.shutdownNow();
-		log.debug("ExecutorService shutdown. c‚èRunnable="+list.size());
+		log.debug("ExecutorService shutdown. æ®‹ã‚ŠRunnable="+list.size());
 		
 		super.handleShellCloseEvent();
 	}
@@ -598,7 +598,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 			snippetRelatedUrlText.setEnabled(false);
 		}else{
 			setWindowTitleMessage(snippet.getTitle());
-			currentSnippet = null; // styledText‚ğ•ÏX‚·‚é‚ÆcurrentSnippet‚É‘‚«Š·‚¦ƒtƒ‰ƒO‚ª—§‚Â‚Ì‚Åˆê“xnull‚ğİ’è‚·‚éB
+			currentSnippet = null; // styledTextã‚’å¤‰æ›´ã™ã‚‹ã¨currentSnippetã«æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°ãŒç«‹ã¤ã®ã§ä¸€åº¦nullã‚’è¨­å®šã™ã‚‹ã€‚
 			styledText.setEnabled(true);
 			snippetTitleText.setEnabled(true);
 			styledText.setText(snippet.getBody());
@@ -617,24 +617,24 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	
 	@Override
 	/**
-	 * Œ»İ‘I‘ğ’†‚ÌƒXƒjƒyƒbƒg‚ğİ’è‚·‚éB
+	 * ç¾åœ¨é¸æŠä¸­ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚
 	 */
 	public void selectCurrentSnippet(ISnippet snippet) {
 		currentSnippet = snippet;
 		IGroupItem item = snippetManager.getGroupItem(snippet);
-		log.debug("ƒXƒjƒyƒbƒg‚ğ‘I‘ğó‘Ô‚É groupItem="+item);
+		log.debug("ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’é¸æŠçŠ¶æ…‹ã« groupItem="+item);
 		if (item != null){
 			snippetsTableViewer.setInput(item.getSnippets());
 			snippetsTableViewer.refresh();
 		}
 			
-		// ƒXƒjƒyƒbƒg‚ğ‘I‘ğ
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’é¸æŠ
 		ISelection selection = new StructuredSelection(snippet);
 		snippetsTableViewer.setSelection(selection, true);
 	}
 	
 	/**
-	 * ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒOƒ‹[ƒvƒcƒŠ[‚ÅŒ»İ‘I‘ğ’†‚ÌƒAƒCƒeƒ€‚ğæ“¾‚·‚éB
+	 * ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚°ãƒ«ãƒ¼ãƒ—ãƒ„ãƒªãƒ¼ã§ç¾åœ¨é¸æŠä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹ã€‚
 	 * @return
 	 */
 	public IGroupItem getCurrentSelectedTreeItem(){
@@ -647,8 +647,8 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	}
 	
 	/**
-	 * Œ»İ‘I‘ğ’†‚ÌƒXƒjƒyƒbƒgˆê——‚ğæ“¾‚·‚éB
-	 * ‰½‚à‘I‘ğ‚µ‚Ä‚¢‚È‚¯‚ê‚ÎAƒTƒCƒY‚ª0‚ÌƒŠƒXƒg‚ğ•Ô‚·B
+	 * ç¾åœ¨é¸æŠä¸­ã®ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¸€è¦§ã‚’å–å¾—ã™ã‚‹ã€‚
+	 * ä½•ã‚‚é¸æŠã—ã¦ã„ãªã‘ã‚Œã°ã€ã‚µã‚¤ã‚ºãŒ0ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™ã€‚
 	 * @return
 	 */
 	public List<ISnippet> getCurrentSelectedSnipptes(){
@@ -667,7 +667,7 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	
 	@Override
 	/**
-	 * •\¦‚ğXV‚·‚é
+	 * è¡¨ç¤ºã‚’æ›´æ–°ã™ã‚‹
 	 */
 	public void refresh() {
 		libraryTreeViewer.refresh();
@@ -681,8 +681,8 @@ public class WindowsSnippetWindow extends ApplicationWindow implements ISnippetW
 	}
 	
 	/**
-	 * SampleWindow‚Ìmainƒƒ\ƒbƒh
-	 * @param args ˆø”(‚±‚±‚Å‚Í–³‹‚·‚é)
+	 * SampleWindowã®mainãƒ¡ã‚½ãƒƒãƒ‰
+	 * @param args å¼•æ•°(ã“ã“ã§ã¯ç„¡è¦–ã™ã‚‹)
 	 */
 	public static void main(String[] args) {
 		WindowsSnippetWindow mainWindow = new WindowsSnippetWindow();

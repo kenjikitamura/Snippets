@@ -22,19 +22,19 @@ public class DeleteGroupAction extends SnippetWindowAction{
 		if (item != null){
 			MessageBox msg = new MessageBox(snippetWindow.getShell(), SWT.OK | SWT.CANCEL);
 			msg.setText(ISnippetWindow.APP_NAME);
-			msg.setMessage("ƒOƒ‹[ƒv "+item.getTitle()+" ‚ğíœ‚µ‚Ü‚·‚©B\níœ‚·‚éƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚éƒXƒjƒyƒbƒg‚ÍA‚Ç‚ÌƒOƒ‹[ƒv‚É‚àŠ‘®‚¹‚¸Aƒ‰ƒCƒuƒ‰ƒŠ‚ÉŠ‘®‚·‚é‚±‚Æ‚É‚È‚è‚Ü‚·B");
+			msg.setMessage("ã‚°ãƒ«ãƒ¼ãƒ— "+item.getTitle()+" ã‚’å‰Šé™¤ã—ã¾ã™ã‹ã€‚\nå‰Šé™¤ã™ã‚‹ã‚°ãƒ«ãƒ¼ãƒ—ã«å«ã¾ã‚Œã‚‹ã‚¹ãƒ‹ãƒšãƒƒãƒˆã¯ã€ã©ã®ã‚°ãƒ«ãƒ¼ãƒ—ã«ã‚‚æ‰€å±ã›ãšã€ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«æ‰€å±ã™ã‚‹ã“ã¨ã«ãªã‚Šã¾ã™ã€‚");
 			int ret = msg.open();
 			if (ret == SWT.OK){
-				log.debug("ƒOƒ‹[ƒvíœ‚ª‘I‘ğ‚³‚ê‚½ ƒOƒ‹[ƒv="+item.getTitle());
+				log.debug("ã‚°ãƒ«ãƒ¼ãƒ—å‰Šé™¤ãŒé¸æŠã•ã‚ŒãŸ ã‚°ãƒ«ãƒ¼ãƒ—="+item.getTitle());
 				if (item.getParent() != null){
 					boolean flg = item.getParent().removeChild(item);
-					log.debug(item.getTitle()+"‚ğAe‚Ì"+item.getParent().getTitle()+"‚©‚çíœ íœ¬Œ÷?="+flg);
+					log.debug(item.getTitle()+"ã‚’ã€è¦ªã®"+item.getParent().getTitle()+"ã‹ã‚‰å‰Šé™¤ å‰Šé™¤æˆåŠŸ?="+flg);
 					snippetWindow.refresh();
 				}else{
-					log.debug(item.getTitle()+"‚Ìe‚Ínull‚¾‚Á‚½‚Ì‚Åíœ‚Å‚«‚È‚©‚Á‚½B");
+					log.debug(item.getTitle()+"ã®è¦ªã¯nullã ã£ãŸã®ã§å‰Šé™¤ã§ããªã‹ã£ãŸã€‚");
 				}
 			}else{
-				log.debug("ƒOƒ‹[ƒvíœ ƒLƒƒƒ“ƒZƒ‹");
+				log.debug("ã‚°ãƒ«ãƒ¼ãƒ—å‰Šé™¤ ã‚­ãƒ£ãƒ³ã‚»ãƒ«");
 			}
 		}
 	}

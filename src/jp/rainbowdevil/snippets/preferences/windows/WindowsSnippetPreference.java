@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.jface.preference.PreferenceStore;
 
 /**
- * Windows—pİ’è•Û‘¶ƒNƒ‰ƒX
+ * Windowsç”¨è¨­å®šä¿å­˜ã‚¯ãƒ©ã‚¹
  * @author kkitamura
  *
  */
@@ -26,13 +26,13 @@ public class WindowsSnippetPreference implements ISnippetPreference{
 	}
 	
 	private void initDefaultValue(){
-		// ƒfƒ‚—p‰Šú’l
+		// ãƒ‡ãƒ¢ç”¨åˆæœŸå€¤
 		if (!preferenceStore.contains(ISnippetPreference.ACCOUNT_EMAIL)){
 			preferenceStore.setValue(ISnippetPreference.ACCOUNT_EMAIL, "demo@example.com");
 			preferenceStore.setValue(ISnippetPreference.ACCOUNT_PASSWORD, "demo");
 		}
 		
-		// ‰Šú’l
+		// åˆæœŸå€¤
 		if (!preferenceStore.contains(ISnippetPreference.CONNECTION_USE_PROXY)){
 			preferenceStore.setValue(ISnippetPreference.CONNECTION_PROXY_SERVER, "proxy.mei.co.jp");
 			preferenceStore.setValue(ISnippetPreference.CONNECTION_PROXY_PORT, 8080);
@@ -41,8 +41,8 @@ public class WindowsSnippetPreference implements ISnippetPreference{
 
 	@Override
 	/**
-	 * İ’è‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚éB
-	 * •Û‘¶‚É¸”s‚µ‚½ê‡‚Í—áŠO‚ğ“Š‚°‚éB
+	 * è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹ã€‚
+	 * ä¿å­˜ã«å¤±æ•—ã—ãŸå ´åˆã¯ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
 	 */
 	public void save() throws IOException {
 		preferenceStore.save();
@@ -50,15 +50,15 @@ public class WindowsSnippetPreference implements ISnippetPreference{
 	
 	@Override
 	/**
-	 * İ’è‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚éB
-	 * —áŠO‚Í“Š‚°‚¸A•Û‘¶‚É¬Œ÷‚·‚é‚ÆtrueA¸”s‚·‚é‚Æfalse‚ğ•Ô‚·B
+	 * è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹ã€‚
+	 * ä¾‹å¤–ã¯æŠ•ã’ãšã€ä¿å­˜ã«æˆåŠŸã™ã‚‹ã¨trueã€å¤±æ•—ã™ã‚‹ã¨falseã‚’è¿”ã™ã€‚
 	 */
 	public boolean saveQuietly() {
 		try {
 			save();
 			return true;
 		} catch (IOException e) {
-			log.error("İ’èƒtƒ@ƒCƒ‹‚Ì•Û‘¶‚É¸”sB",e);
+			log.error("è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜ã«å¤±æ•—ã€‚",e);
 			return false;
 		}
 	}
@@ -100,8 +100,8 @@ public class WindowsSnippetPreference implements ISnippetPreference{
 	}
 
 	/**
-	 * PreferenceStore‚ğæ“¾‚·‚éB
-	 * PreferenceDialog—p
+	 * PreferenceStoreã‚’å–å¾—ã™ã‚‹ã€‚
+	 * PreferenceDialogç”¨
 	 * @return
 	 */
 	public PreferenceStore getPreferenceStore(){

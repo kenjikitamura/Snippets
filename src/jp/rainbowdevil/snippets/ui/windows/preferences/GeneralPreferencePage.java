@@ -11,15 +11,15 @@ import org.eclipse.swt.widgets.Text;
 public class GeneralPreferencePage extends FieldEditorPreferencePage{
 
 	public GeneralPreferencePage(){
-		setTitle("ƒy[ƒW‚Q");
-        setMessage("ƒy[ƒW‚Q‚ÌƒƒbƒZ[ƒW");
+		setTitle("ãƒšãƒ¼ã‚¸ï¼’");
+        setMessage("ãƒšãƒ¼ã‚¸ï¼’ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸");
 	}
 /*
 	@Override
 	protected Control createContents(Composite parent) {
 		Composite c = new Composite(parent, SWT.NONE);
         c.setLayout(new GridLayout(2, true));
-        new Label(c, SWT.NONE).setText("ƒpƒ‰ƒ[ƒ^‚PF");
+        new Label(c, SWT.NONE).setText("ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘ï¼š");
         text = new Text(c, SWT.SINGLE | SWT.BORDER);
         return c;
 	}

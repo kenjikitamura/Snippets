@@ -10,7 +10,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
 
 /**
- * ƒXƒjƒyƒbƒgƒhƒ‰ƒbƒO•ƒhƒƒbƒv—pDropListener
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ç”¨DropListener
  * 
  * @author kitamura
  *
@@ -57,7 +57,7 @@ public class SnippetDropListener extends ViewerDropAdapter{
 	    }
 	    groupItem.addSnippet(snippet);
 	    iSnippetWindow.refresh();
-	    log.debug("DropÀs target="+groupItem+" translatedLocation="+translatedLocation+" data="+event.data+" ƒOƒ‹[ƒv("+groupItem2+")‚©‚çƒOƒ‹[ƒv("+groupItem+")‚ÖˆÚ“®");
+	    log.debug("Dropå®Ÿè¡Œ target="+groupItem+" translatedLocation="+translatedLocation+" data="+event.data+" ã‚°ãƒ«ãƒ¼ãƒ—("+groupItem2+")ã‹ã‚‰ã‚°ãƒ«ãƒ¼ãƒ—("+groupItem+")ã¸ç§»å‹•");
 	    
 		super.drop(event);
 	}

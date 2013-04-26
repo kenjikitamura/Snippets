@@ -6,7 +6,7 @@ import jp.rainbowdevil.snippets.preferences.ISnippetPreference;
 import jp.rainbowdevil.snippets.preferences.PreferencesBuilder;
 
 /**
- * ƒXƒjƒyƒbƒg‚ğV‹Kì¬‚·‚éƒNƒ‰ƒX
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’æ–°è¦ä½œæˆã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author kkitamura
  *
  */
@@ -23,13 +23,13 @@ public class SnippetsBuilder {
 		
 		preference.setValue(ISnippetPreference.NEW_SNIPPETS_NUMBER, no + 1);
 		
-		// ƒXƒjƒyƒbƒg”Ô†‚Ì•Û‘¶B •Û‘¶‚É¸”s‚µ‚½ê‡‚ÍƒƒO‚ÉÚ×‚ª•Û‘¶‚³‚ê‚éB
+		// ã‚¹ãƒ‹ãƒšãƒƒãƒˆç•ªå·ã®ä¿å­˜ã€‚ ä¿å­˜ã«å¤±æ•—ã—ãŸå ´åˆã¯ãƒ­ã‚°ã«è©³ç´°ãŒä¿å­˜ã•ã‚Œã‚‹ã€‚
 		preference.saveQuietly();
 		return snippet;
 	}
 	
 	/**
-	 * ƒfƒtƒHƒ‹ƒg–¼‚Åƒ^ƒO‚ğ’Ç‰Á‚·‚é
+	 * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã§ã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹
 	 * @param parent
 	 * @return
 	 */

@@ -55,13 +55,13 @@ public class SnippetSearchWindow extends ApplicationWindow implements ISearchDia
 	@Override
 	protected Control createContents(Composite parent) {
 		
-		// ƒEƒCƒ“ƒhƒE‘S‘Ì‚ÌComposite 
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å…¨ä½“ã®Composite 
 		Composite topComposite = new Composite(parent, SWT.BORDER);
 		GridLayout topGridLayout = new GridLayout();
 		topGridLayout.numColumns = 1;
 		topComposite.setLayout(topGridLayout);
 		
-		// ŒŸõƒL[ƒ[ƒh“ü—Í•”•ª
+		// æ¤œç´¢ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›éƒ¨åˆ†
 		searchText = new Text(topComposite, SWT.BORDER);
 		searchText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		searchText.addModifyListener(new ModifyListener() {
@@ -71,7 +71,7 @@ public class SnippetSearchWindow extends ApplicationWindow implements ISearchDia
 			}
 		});
 		
-		// ŒŸõŒ‹‰Ê•\Ž¦TableViewer
+		// æ¤œç´¢çµæžœè¡¨ç¤ºTableViewer
 		resultTableViewer = new TableViewer(topComposite);
 		resultTableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 		resultTableViewer.setContentProvider(new ArrayContentProvider());
@@ -128,14 +128,14 @@ public class SnippetSearchWindow extends ApplicationWindow implements ISearchDia
 		searchManager.search(searchText.getText(), new ISearchResultListener() {
 			@Override
 			public void notifyResult(SearchResultItem item) {
-				log.debug("ŒŸõŒ‹‰Ê "+item.getTitle());
+				log.debug("æ¤œç´¢çµæžœ "+item.getTitle());
 				currentSearchResultItemList.add(item);
 				resultTableViewer.refresh();
 			}
 			
 			@Override
 			public void finished() {
-				log.debug("ŒŸõI—¹");
+				log.debug("æ¤œç´¢çµ‚äº†");
 			}
 		});
 	}

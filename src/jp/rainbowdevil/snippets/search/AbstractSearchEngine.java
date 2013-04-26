@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 検索エンジンの基底クラス
+ * 讀懃ｴ｢繧ｨ繝ｳ繧ｸ繝ｳ縺ｮ蝓ｺ蠎輔け繝ｩ繧ｹ
  * @author kkitamura
  *
  */

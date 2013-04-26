@@ -3,7 +3,7 @@ package jp.rainbowdevil.snippets.model;
 import java.util.Date;
 
 /**
- * �X�j�y�b�g��interface
+ * スニペットのinterface
  * @author kkitamura
  *
  */
@@ -13,22 +13,22 @@ public interface ISnippet {
 	public void setId(long id);
 	
 	
-	/** �X�j�y�b�g�̃^�C�g�����擾����B */
+	/** スニペットのタイトルを取得する。 */
 	public String getTitle();
 	
-	/** �X�j�y�b�g�̃^�C�g����ݒ肷��B */
+	/** スニペットのタイトルを設定する。 */
 	public void setTitle(String title);
 	
-	/** �X�j�y�b�g�̖{�����擾����B */
+	/** スニペットの本文を取得する。 */
 	public String getBody();
 	
-	/** �X�j�y�b�g�̖{����ݒ肷��B */
+	/** スニペットの本文を設定する。 */
 	public void setBody(String text);
 	
-	/** �ύX�ς݃t���O��ݒ肷��B */
+	/** 変更済みフラグを設定する。 */
 	public void setDirty(boolean dirty);
 	
-	/** �ύX�ς݃t���O���擾����B */
+	/** 変更済みフラグを取得する。 */
 	public boolean isDirty();
 	
 	public Date getCreateDate();
@@ -59,9 +59,9 @@ public interface ISnippet {
 	public void setSnippetsLibrary(SnippetsLibrary snippetsLibrary);
 	
 	public enum EditableType{
-		EDITABLE,			// �ҏW�\
-		USER_READ_ONLY,		// ���[�U���ҏW���b�N
-		SYSTEM_READ_ONLY	// �V�X�e�����ҏW���b�N(���[�h�I�����[�̃��C�u�����Ȃ�)
+		EDITABLE,			// 編集可能
+		USER_READ_ONLY,		// ユーザが編集ロック
+		SYSTEM_READ_ONLY	// システムが編集ロック(リードオンリーのライブラリなど)
 	}
 	
 

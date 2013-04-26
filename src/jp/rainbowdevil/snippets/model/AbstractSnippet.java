@@ -9,47 +9,47 @@ import org.simpleframework.xml.ElementList;
 public class AbstractSnippet implements ISnippet {
 
 	@Element(required=false)
-	/** ƒXƒjƒyƒbƒgƒ^ƒCƒgƒ‹ */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚¿ã‚¤ãƒˆãƒ« */
 	private String title = "";
 	
 	@Element(required=false)
-	/** ƒXƒjƒyƒbƒg–{•¶ */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆæœ¬æ–‡ */
 	private String body = "";
 	
 	@Element(required=false)
-	/** ƒm[ƒg */
+	/** ãƒãƒ¼ãƒˆ */
 	private String notes = "";
 
 	@ElementList(required=false)
-	/** ƒ‰ƒxƒ‹ */
+	/** ãƒ©ãƒ™ãƒ« */
 	private List<String> labels;
 	
 	@Element(required=false)
-	/** ˆø—pŒ³URL */
+	/** å¼•ç”¨å…ƒURL */
 	private String url = "";
 	
 	@Element(required=false)
-	/** ƒR[ƒhìÒ */
+	/** ã‚³ãƒ¼ãƒ‰ä½œè€… */
 	private String author = "";
 	
 	@Element(required=false)
-	/** ƒ‰ƒCƒZƒ“ƒX */
+	/** ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ */
 	private String license = "";
 	
 	@Element(required=false)
-	/** ƒXƒjƒyƒbƒgì¬“ú */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆä½œæˆæ—¥æ™‚ */
 	private Date createDate;
 	
 	@Element(required=false)
-	/** ƒXƒjƒyƒbƒgXV“ú */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ›´æ–°æ—¥æ™‚ */
 	private Date updateDate;
 	
 	@Element(required=false)
-	/** ƒXƒjƒyƒbƒg•ÒW‰Â”Û */
+	/** ã‚¹ãƒ‹ãƒšãƒƒãƒˆç·¨é›†å¯å¦ */
 	private EditableType editableType = null;
 	
 	@Element(required=true)
-	/** •ÒWƒtƒ‰ƒO ‚±‚Ì•Ï”‚Ì’l‚É‚æ‚èAƒ[ƒJƒ‹‚Ìƒf[ƒ^‚ªXV‚³‚ê‚Ä‚¢‚é‚©‚ğŠm”F‚·‚é */
+	/** ç·¨é›†ãƒ•ãƒ©ã‚° ã“ã®å¤‰æ•°ã®å€¤ã«ã‚ˆã‚Šã€ãƒ­ãƒ¼ã‚«ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ãŒæ›´æ–°ã•ã‚Œã¦ã„ã‚‹ã‹ã‚’ç¢ºèªã™ã‚‹ */
 	private boolean isDirty = false;
 	
 	@Element(required=true)
@@ -59,7 +59,7 @@ public class AbstractSnippet implements ISnippet {
 	private long id = -1;
 		
 	@Element(required=true)
-	/** XVƒJƒEƒ“ƒ^ ‚±‚Ì•Ï”‚Ì’l‚É‚æ‚èƒT[ƒoã‚Ìƒf[ƒ^‚ªXV‚³‚ê‚Ä‚¢‚é‚©‚ğŠm”F‚·‚éB */
+	/** æ›´æ–°ã‚«ã‚¦ãƒ³ã‚¿ ã“ã®å¤‰æ•°ã®å€¤ã«ã‚ˆã‚Šã‚µãƒ¼ãƒä¸Šã®ãƒ‡ãƒ¼ã‚¿ãŒæ›´æ–°ã•ã‚Œã¦ã„ã‚‹ã‹ã‚’ç¢ºèªã™ã‚‹ã€‚ */
 	private long updateCount = -1;
 	
 	@Element(required=true)

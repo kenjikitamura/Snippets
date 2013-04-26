@@ -24,11 +24,11 @@ public class SnippetManager {
 	private ISnippetWindow snippetsWindow;
 	private List<SnippetsLibrary> snippetsLibraries;
 	
-	/** Œ»İ—LŒø‚ÈƒJƒŒƒ“ƒgƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ
-	 *  V‹KƒXƒjƒyƒbƒg‚Ì’Ç‰Á‚Í‚±‚ÌƒJƒŒƒ“ƒgƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚É‘Î‚µ‚Äs‚¤B */
+	/** ç¾åœ¨æœ‰åŠ¹ãªã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+	 *  æ–°è¦ã‚¹ãƒ‹ãƒšãƒƒãƒˆã®è¿½åŠ ã¯ã“ã®ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«å¯¾ã—ã¦è¡Œã†ã€‚ */
 	private SnippetsLibrary currentSnippetsLibrary;
 	
-	/** Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒOƒ‹[ƒv */
+	/** ç¾åœ¨é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ«ãƒ¼ãƒ— */
 	private IGroupItem currentGroupItem;
 	
 	public SnippetManager(){
@@ -37,12 +37,12 @@ public class SnippetManager {
 	}
 	
 	/**
-	 * V‚µ‚¢ƒXƒjƒyƒbƒg‚ğƒJƒŒƒ“ƒgƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚É’Ç‰Á‚·‚éB
+	 * æ–°ã—ã„ã‚¹ãƒ‹ãƒšãƒƒãƒˆã‚’ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è¿½åŠ ã™ã‚‹ã€‚
 	 * @throws SnippetsException 
 	 */
 	public void createNewSnippet() throws SnippetsException{
 		if (currentSnippetsLibrary == null){
-			throw new SnippetsException("ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+			throw new SnippetsException("ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒé¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
 		}
 		ISnippet snippet = SnippetsBuilder.createNewSnippet();
 		snippet.setSnippetsLibrary(currentSnippetsLibrary);
@@ -52,7 +52,7 @@ public class SnippetManager {
 	}
 	
 	/**
-	 * ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚ğƒ[ƒJƒ‹ƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚éB
+	 * ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹ã€‚
 	 * @throws IOException
 	 */
 	public void saveSnippetLibraryToLocalDatabase() throws IOException{
@@ -61,7 +61,7 @@ public class SnippetManager {
 	}
 	
 	/**
-	 * ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚ğƒ[ƒJƒ‹ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ŞB
+	 * ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€ã€‚
 	 * @throws IOException
 	 */
 	public void loadSnippetLibraryFromLocalDatabase() throws IOException{
@@ -69,11 +69,11 @@ public class SnippetManager {
 		try{
 			snippetsLibraries = snippetStore.loadLocalDatabase();			
 		}catch(FileNotFoundException e){
-			log.error("ƒ[ƒJƒ‹ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠƒf[ƒ^ƒx[ƒXƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½B",e);
+			log.error("ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚",e);
 			/*
 			List<IGroupItem> list = new ArrayList<IGroupItem>();
 			IGroupItem item = new SnippetsLibrary();
-			item.setTitle("ƒ}ƒCƒ‰ƒCƒuƒ‰ƒŠ");
+			item.setTitle("ãƒã‚¤ãƒ©ã‚¤ãƒ–ãƒ©ãƒª");
 			list.add(item);
 			rootItem.setChildren(list);
 			*/
@@ -86,8 +86,8 @@ public class SnippetManager {
 	}
 	
 	/**
-	 * ƒXƒjƒyƒbƒg‚ªŠ‘®‚·‚éƒOƒ‹[ƒv‚ğæ“¾‚·‚éB
-	 * ƒXƒjƒyƒbƒg‚ªƒOƒ‹[ƒv‚ÉŠ‘®‚µ‚Ä‚¢‚È‚¢ê‡‚Ínull‚ğ•Ô‚·B
+	 * ã‚¹ãƒ‹ãƒšãƒƒãƒˆãŒæ‰€å±ã™ã‚‹ã‚°ãƒ«ãƒ¼ãƒ—ã‚’å–å¾—ã™ã‚‹ã€‚
+	 * ã‚¹ãƒ‹ãƒšãƒƒãƒˆãŒã‚°ãƒ«ãƒ¼ãƒ—ã«æ‰€å±ã—ã¦ã„ãªã„å ´åˆã¯nullã‚’è¿”ã™ã€‚
 	 * 
 	 * @param snippet
 	 * @return
@@ -98,7 +98,7 @@ public class SnippetManager {
 			if (groupItem != null){
 				return groupItem;
 			}
-			// ƒOƒ‹[ƒv‚É‚ÍŠ‘®‚µ‚Ä‚¨‚ç‚¸Aƒ‰ƒCƒuƒ‰ƒŠ‚ÉŠ‘®‚µ‚Ä‚¢‚éê‡
+			// ã‚°ãƒ«ãƒ¼ãƒ—ã«ã¯æ‰€å±ã—ã¦ãŠã‚‰ãšã€ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«æ‰€å±ã—ã¦ã„ã‚‹å ´åˆ
 			if (library.getSnippets().contains(snippet)){
 				return library;
 			}
@@ -161,9 +161,9 @@ public class SnippetManager {
 	}
 	
 	/**
-	 * ƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠID‚©‚çAƒXƒjƒyƒbƒgƒ‰ƒCƒuƒ‰ƒŠ‚ğæ“¾‚·‚éB
+	 * ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªIDã‹ã‚‰ã€ã‚¹ãƒ‹ãƒšãƒƒãƒˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å–å¾—ã™ã‚‹ã€‚
 	 * 
-	 * ‘¶İ‚µ‚È‚¢ê‡‚Ínull‚ğ•Ô‚·B
+	 * å­˜åœ¨ã—ãªã„å ´åˆã¯nullã‚’è¿”ã™ã€‚
 	 * @param libraryId
 	 * @return
 	 */

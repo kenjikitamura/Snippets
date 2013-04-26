@@ -7,7 +7,7 @@ import jp.rainbowdevil.snippets.ui.windows.WindowsSnippetWindow;
 import org.eclipse.jface.dialogs.InputDialog;
 
 /**
- * ƒ^ƒOV‹Kì¬ƒ_ƒCƒAƒƒO‚ğŠJ‚«Aƒ^ƒO‚ğ’Ç‰Á‚·‚éAction
+ * ã‚¿ã‚°æ–°è¦ä½œæˆãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ãã€ã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹Action
  * @author kkitamura
  *
  */
@@ -23,22 +23,22 @@ public class OpenCreateNewTagDialogAction extends SnippetWindowAction{
 	
 	@Override
 	public void run() {
-		InputDialog inputDialog = new InputDialog(snippetWindow.getShell(), "V‚µ‚¢ƒ^ƒO‚Ì’Ç‰Á", "’Ç‰Á‚·‚éƒ^ƒO–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", "", null);
+		InputDialog inputDialog = new InputDialog(snippetWindow.getShell(), "æ–°ã—ã„ã‚¿ã‚°ã®è¿½åŠ ", "è¿½åŠ ã™ã‚‹ã‚¿ã‚°åã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", "", null);
 		int ret = inputDialog.open();
 		if (ret == InputDialog.OK){
 			String tagName = inputDialog.getValue();
 			if (tagName != null && tagName.trim().length() != 0){
-				log.debug("“ü—Í‚³‚ê‚½ƒ^ƒO–¼="+tagName);
+				log.debug("å…¥åŠ›ã•ã‚ŒãŸã‚¿ã‚°å="+tagName);
 				IGroupItem item = snippetWindow.getCurrentSelectedTreeItem();
 				if (item != null){
 					SnippetsBuilder.createNewTag(item,tagName);
 					snippetWindow.refresh();
 				}
 			}else{
-				log.debug("‰½‚à“ü—Í‚³‚ê‚È‚©‚Á‚½B");
+				log.debug("ä½•ã‚‚å…¥åŠ›ã•ã‚Œãªã‹ã£ãŸã€‚");
 			}
 		}else{
-			log.debug("ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½B");
+			log.debug("ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã€‚");
 		}
 	}
 

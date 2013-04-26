@@ -4,7 +4,7 @@ import jp.rainbowdevil.snippets.ui.windows.WindowsSnippetWindow;
 import jp.rainbowdevil.snippets.ui.windows.SnippetSearchWindow;
 
 /**
- * ƒXƒjƒyƒbƒgŒŸõƒ_ƒCƒAƒƒO‚ðŠJ‚­Action
+ * ã‚¹ãƒ‹ãƒšãƒƒãƒˆæ¤œç´¢ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ãAction
  * @author kkitamura
  *
  */
@@ -21,11 +21,11 @@ public class SearchDialogOpenAction extends SnippetWindowAction{
 	
 	@Override
 	public void run() {
-		log.debug("ƒeƒXƒgŒŸõ‘‹•\Ž¦");
+		log.debug("ãƒ†ã‚¹ãƒˆæ¤œç´¢çª“è¡¨ç¤º");
 		SnippetSearchWindow searchWindow = new SnippetSearchWindow(snippetWindow.getShell());
 		searchWindow.setMainWindow(mainWindow);
 		searchWindow.open();
-		log.debug("ƒeƒXƒgŒŸõ‘‹•\Ž¦Š®—¹");
+		log.debug("ãƒ†ã‚¹ãƒˆæ¤œç´¢çª“è¡¨ç¤ºå®Œäº†");
 	}
 
 }

@@ -19,7 +19,7 @@ public class SaveSnippetLibraryToLocalDatabaseAction extends SnippetWindowAction
 		try {
 			snippetWindow.getSnippetManager().saveSnippetLibraryToLocalDatabase();
 		} catch (IOException e) {
-			log.error("•Û‘¶‚É¸”sB",e);
+			log.error("ä¿å­˜ã«å¤±æ•—ã€‚",e);
 		}
 	}
 

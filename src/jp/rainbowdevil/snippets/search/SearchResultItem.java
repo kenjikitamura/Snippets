@@ -1,9 +1,9 @@
 package jp.rainbowdevil.snippets.search;
 
 /**
- * ŒŸõŒ‹‰ÊƒNƒ‰ƒX
+ * æ¤œç´¢çµæžœã‚¯ãƒ©ã‚¹
  * 
- * ŒŸõƒGƒ“ƒWƒ“‚ÅŒŸõ‚³‚ê‚½Œ‹‰Ê‚PŒ‚ð•\‚·ƒNƒ‰ƒX‚ÅAƒAƒCƒRƒ“‚âƒ^ƒCƒgƒ‹‚È‚Ç‚ð•ÛŽ‚·‚éB
+ * æ¤œç´¢ã‚¨ãƒ³ã‚¸ãƒ³ã§æ¤œç´¢ã•ã‚ŒãŸçµæžœï¼‘ä»¶ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹ã§ã€ã‚¢ã‚¤ã‚³ãƒ³ã‚„ã‚¿ã‚¤ãƒˆãƒ«ãªã©ã‚’ä¿æŒã™ã‚‹ã€‚
  * 
  * @author kitamura
  *
